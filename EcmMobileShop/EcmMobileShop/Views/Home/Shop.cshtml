@@ -36,7 +36,7 @@
                         <ul class="sidebar_categories">
                             @foreach (var item in listLoai)
                             {
-                                <li><a href="@Url.Action("Shop","Home")">@item.TenLoaiSP</a></li>
+                                <li><a href="@Url.Action("Shop","Home", new { idLoai = item.IdLoaiSP })">@item.TenLoaiSP</a></li>
                             }
                             
 
@@ -68,7 +68,7 @@
                             @foreach (var item in listHang)
                             {
                                 
-                                <li class="brand"><a href="@Url.Action("Shop","Home")">@item.TenHangSP</a></li>
+                                <li class="brand"><a href="@Url.Action("Shop","Home", new { idHang = item.IdHangSP })">@item.TenHangSP</a></li>
                             }
                         </ul>
                     </div>
@@ -128,8 +128,8 @@
                     <div class="shop_page_nav d-flex flex-row">
                         <div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
                         <ul class="page_nav d-flex flex-row">
-                            @Html.PagedListPager(Model, page => Url.Action("Shop", "Home",
-                       new { page }))
+                            @Html.PagedListPager(Model, page => Url.Action("Shop", "Home", new { idLoai = Request.QueryString["idLoai"], page }))
+
                         </ul>
                         <div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
                     </div>

@@ -78,7 +78,7 @@
                                                 <li><a class="clc" href="#">Tất cả danh mục</a></li>
                                                 @foreach (var item in Model)
                                                 {
-                                                    <li>@Html.ActionLink(item.TenLoaiSP,"Shop","Home", new { @class = "clc" })</li>
+                                                    <li>@Html.ActionLink(item.TenLoaiSP,"Shop","Home",new { @class = "clc" });</li>
                                                 }
                                             </ul>
                                         </div>
@@ -141,7 +141,7 @@
                                 
                                 @foreach (var item in Model)
                                 {
-                                    <li><a href="@Url.Action("Shop", "Home")">@Html.DisplayFor(m => item.TenLoaiSP) <i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="@Url.Action("Shop", "Home", new { idLoai = item.IdLoaiSP })">@Html.DisplayFor(m => item.TenLoaiSP) <i class="fas fa-chevron-right"></i></a></li>
                                 }
                                
                             </ul>

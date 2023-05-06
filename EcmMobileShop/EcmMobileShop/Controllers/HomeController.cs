@@ -38,18 +38,42 @@ namespace EcmMobileShop.Controllers
             return View(loaiSP);
         }
 
-        public ActionResult Shop(int? page)
+        public ActionResult Shop(int? page, int? idLoai, int? idHang)
         {
-
+           
             if (page == null) page = 1;
 
+            if (idLoai != null)
+            {
+                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP).Where(p => p.IdLoaiSP == idLoai);
 
-            var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP);
-            int pageSize = 15;
-            int pageNumber = (page ?? 1);
+                int pageSize = 15;
+                int pageNumber = (page ?? 1);
 
 
-            return View(mobile.ToPagedList(pageNumber, pageSize));
+                return View(mobile.ToPagedList(pageNumber, pageSize));
+            } if(idHang != null)
+            {
+                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP).Where(p => p.IdHangSP == idHang);
+
+                int pageSize = 15;
+                int pageNumber = (page ?? 1);
+
+
+                return View(mobile.ToPagedList(pageNumber, pageSize));
+            }    
+            else {
+                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP);
+                int a = mobile.Count();
+
+                int pageSize = 15;
+                int pageNumber = (page ?? 1);
+
+
+                return View(mobile.ToPagedList(pageNumber, pageSize));
+            }
+
+            
         }
         public ActionResult Product(int id)
         {
