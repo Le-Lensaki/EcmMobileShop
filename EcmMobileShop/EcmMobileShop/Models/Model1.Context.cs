@@ -25,6 +25,7 @@ namespace EcmMobileShop.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tb_CHITIETHOADON> tb_CHITIETHOADON { get; set; }
         public virtual DbSet<tb_CT_SANPHAM> tb_CT_SANPHAM { get; set; }
         public virtual DbSet<tb_HANGSP> tb_HANGSP { get; set; }

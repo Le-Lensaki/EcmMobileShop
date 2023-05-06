@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace EcmMobileShop.Areas.Home
+namespace EcmMobileShop.Areas.OneTechAdmin
 {
-    public class HomeAreaRegistration : AreaRegistration 
+    public class OneTechAdminAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Home";
+                return "OneTechAdmin";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Home_default",
-                "Home/{controller}/{action}/{id}",
+                "OneTechAdmin_default",
+                "OneTechAdmin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

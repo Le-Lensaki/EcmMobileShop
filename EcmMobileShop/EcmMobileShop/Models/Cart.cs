@@ -49,6 +49,9 @@ namespace EcmMobileShop.Models
         }
         public CartItem FindProduct(int id)
         {
+            int a = this.products.Count;
+
+
             return this.products.Single(p => p.IdSP.Equals(id));
         }
 

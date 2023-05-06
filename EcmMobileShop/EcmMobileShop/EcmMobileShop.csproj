@@ -307,7 +307,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StartUp.Auth.cs" />
-    <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
+    <Compile Include="Areas\OneTechAdmin\OneTechAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersPaymentController.cs" />
@@ -336,6 +336,9 @@
     </Compile>
     <Compile Include="Models\ModelCollection.cs" />
     <Compile Include="Models\SignUpModel.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tb_CHITIETHOADON.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -564,6 +567,7 @@
     <Content Include="Content\Slick\fonts\slick.woff" />
     <Content Include="Content\Slick\fonts\slick.ttf" />
     <Content Include="Content\Slick\fonts\slick.eot" />
+    <Content Include="Areas\OneTechAdmin\Views\web.config" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -571,7 +575,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Home\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -715,9 +718,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Home\Controllers\" />
-    <Folder Include="Areas\Home\Data\" />
-    <Folder Include="Areas\Home\Views\Shared\" />
+    <Folder Include="Areas\OneTechAdmin\Controllers\" />
+    <Folder Include="Areas\OneTechAdmin\Data\" />
+    <Folder Include="Areas\OneTechAdmin\Views\Shared\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
