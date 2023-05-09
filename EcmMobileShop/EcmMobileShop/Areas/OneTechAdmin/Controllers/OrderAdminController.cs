@@ -24,16 +24,18 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
         // GET: OneTechAdmin/OrderAdmin/Details/5
         public ActionResult Details(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tb_HOADON tb_HOADON = db.tb_HOADON.Find(id);
-            if (tb_HOADON == null)
+            List<tb_CHITIETHOADON> tb_CHITIETHOADON = db.tb_CHITIETHOADON.Where(ct => ct.IdHD == id).ToList();
+            if (tb_CHITIETHOADON.Count == 0)
             {
                 return HttpNotFound();
             }
-            return View(tb_HOADON);
+            ViewBag.id = id;
+            return View(tb_CHITIETHOADON);
         }
         // GET: OneTechAdmin/OrderAdmin/Edit/5
         public ActionResult Edit(int? id)

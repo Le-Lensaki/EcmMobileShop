@@ -30,14 +30,20 @@ namespace EcmMobileShop
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/adminlte/plugins/jquery-ui/jquery-ui.min.css",
                       "~/adminlte/plugins/fontawesome-free/css/all.min.css",
+                      "~/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
                      "~/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
                      "~/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
+                       "~/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
                       "~/adminlte/css/adminlte.min.css",
                       "~/Content/Site.css"));
 
             bundles.Add(new ScriptBundle("~/adminlte/js").Include(
                  "~/adminlte/js/adminlte.min.js",
+                 "~/adminlte/plugins/jquery-ui/jquery-ui.min.js",
+
+
                  "~/adminlte/plugins/datatables/jquery.dataTables.min.js" ,
                 "~/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" ,
                 "~/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js" ,
@@ -50,6 +56,7 @@ namespace EcmMobileShop
                 "~/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js" ,
                 "~/adminlte/plugins/datatables-buttons/js/buttons.print.min.js" ,
                 "~/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js" ,
+                "~/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
                 "~/adminlte/js/demo.js"
              ));
         }

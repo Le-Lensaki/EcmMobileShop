@@ -72,6 +72,14 @@
           <Property Name="TenLoaiSP" Type="nvarchar" MaxLength="100" />
           <Property Name="TrangThai" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="tb_MAUSAC">
+          <Key>
+            <PropertyRef Name="IdMau" />
+          </Key>
+          <Property Name="IdMau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaMau" Type="nvarchar" MaxLength="20" />
+          <Property Name="TenMau" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="tb_SANPHAM">
           <Key>
             <PropertyRef Name="IdSP" />
@@ -185,6 +193,7 @@
           <EntitySet Name="tb_HOADON" EntityType="Self.tb_HOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_KHACHHANG" EntityType="Self.tb_KHACHHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_LOAISP" EntityType="Self.tb_LOAISP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_MAUSAC" EntityType="Self.tb_MAUSAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_SANPHAM" EntityType="Self.tb_SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_TINHTRANGDH" EntityType="Self.tb_TINHTRANGDH" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_ctSP_CTHD" Association="Self.fk_ctSP_CTHD">
@@ -297,6 +306,14 @@
           <Property Name="TenLoaiSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TrangThai" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tb_SANPHAM" Relationship="Self.fk_tb_SANPHAM_tb_LOAISP" FromRole="tb_LOAISP" ToRole="tb_SANPHAM" />
+        </EntityType>
+        <EntityType Name="tb_MAUSAC">
+          <Key>
+            <PropertyRef Name="IdMau" />
+          </Key>
+          <Property Name="IdMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaMau" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TenMau" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tb_SANPHAM">
           <Key>
@@ -415,6 +432,7 @@
           <EntitySet Name="tb_HOADON" EntityType="Self.tb_HOADON" />
           <EntitySet Name="tb_KHACHHANG" EntityType="Self.tb_KHACHHANG" />
           <EntitySet Name="tb_LOAISP" EntityType="Self.tb_LOAISP" />
+          <EntitySet Name="tb_MAUSAC" EntityType="Self.tb_MAUSAC" />
           <EntitySet Name="tb_SANPHAM" EntityType="Self.tb_SANPHAM" />
           <EntitySet Name="tb_TINHTRANGDH" EntityType="Self.tb_TINHTRANGDH" />
           <AssociationSet Name="fk_ctSP_CTHD" Association="Self.fk_ctSP_CTHD">
@@ -523,6 +541,15 @@
                 <ScalarProperty Name="IdLoaiSP" ColumnName="IdLoaiSP" />
                 <ScalarProperty Name="TenLoaiSP" ColumnName="TenLoaiSP" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_MAUSAC">
+            <EntityTypeMapping TypeName="EcmMobileShopModel.tb_MAUSAC">
+              <MappingFragment StoreEntitySet="tb_MAUSAC">
+                <ScalarProperty Name="IdMau" ColumnName="IdMau" />
+                <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+                <ScalarProperty Name="TenMau" ColumnName="TenMau" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

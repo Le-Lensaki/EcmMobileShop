@@ -1,48 +1,65 @@
-﻿@model EcmMobileShop.Models.tb_HOADON
+﻿@model IEnumerable<EcmMobileShop.Models.tb_CHITIETHOADON>
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Trang chi tiết hoá đơn";
     Layout = "~/Areas/OneTechAdmin/Views/Shared/_layoutAdmin.cshtml";
+    int id = ViewBag.id;
 }
-<div>
-    <h4>tb_HOADON</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChiGiao)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChiGiao)
-        </dd>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Chi tiết hoá đơn @ViewBag.id</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng bán</th>
+                    <th>Giá bán</th>
+                    <th>Màu sắc</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model == null)
+                {
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SoLuongBan)
+                            </td>
+                            <td>
+                                $@Html.DisplayFor(modelItem => item.GiaBan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_CT_SANPHAM.MauSac)
+                            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayLap)
-        </dt>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng bán</th>
+                    <th>Giá bán</th>
+                    <th>Màu sắc</th>
+                </tr>
+            </tfoot>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayLap)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_KHACHHANG.TenKH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tb_KHACHHANG.TenKH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_TINHTRANGDH.TenTinhTrang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tb_TINHTRANGDH.TenTinhTrang)
-        </dd>
-
-    </dl>
+        </table>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdHD }) |
+    @Html.ActionLink("Edit", "Edit", new { id = id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<EcmMobileShop.Models.tb_HOADON>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang danh sách hoá đơn";
     Layout = "~/Areas/OneTechAdmin/Views/Shared/_layoutAdmin.cshtml";
 }
 
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">DataTable with default features</h3>
+        <h3 class="card-title">Danh sách hoá đơn</h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -39,7 +39,7 @@
                             @Html.DisplayFor(modelItem => item.tb_TINHTRANGDH.TenTinhTrang)
                         </td>
                         <td>
-                            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.IdHD }) |
+                            @Html.ActionLink("Cập nhật", "Edit", new { id = item.IdHD }) |
                             @Html.ActionLink("Chi tiết hóa đơn", "Details", new { id = item.IdHD })
                         </td>
                     </tr>

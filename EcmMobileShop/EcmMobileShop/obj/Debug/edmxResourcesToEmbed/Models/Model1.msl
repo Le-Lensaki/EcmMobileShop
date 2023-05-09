@@ -75,6 +75,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tb_MAUSAC">
+      <EntityTypeMapping TypeName="EcmMobileShopModel.tb_MAUSAC">
+        <MappingFragment StoreEntitySet="tb_MAUSAC">
+          <ScalarProperty Name="IdMau" ColumnName="IdMau" />
+          <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+          <ScalarProperty Name="TenMau" ColumnName="TenMau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tb_SANPHAM">
       <EntityTypeMapping TypeName="EcmMobileShopModel.tb_SANPHAM">
         <MappingFragment StoreEntitySet="tb_SANPHAM">

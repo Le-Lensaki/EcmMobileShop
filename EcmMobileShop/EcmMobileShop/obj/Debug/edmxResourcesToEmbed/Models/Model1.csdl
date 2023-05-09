@@ -77,6 +77,14 @@
     <Property Name="TrangThai" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="tb_SANPHAM" Relationship="Self.fk_tb_SANPHAM_tb_LOAISP" FromRole="tb_LOAISP" ToRole="tb_SANPHAM" />
   </EntityType>
+  <EntityType Name="tb_MAUSAC">
+    <Key>
+      <PropertyRef Name="IdMau" />
+    </Key>
+    <Property Name="IdMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaMau" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TenMau" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="tb_SANPHAM">
     <Key>
       <PropertyRef Name="IdSP" />
@@ -194,6 +202,7 @@
     <EntitySet Name="tb_HOADON" EntityType="Self.tb_HOADON" />
     <EntitySet Name="tb_KHACHHANG" EntityType="Self.tb_KHACHHANG" />
     <EntitySet Name="tb_LOAISP" EntityType="Self.tb_LOAISP" />
+    <EntitySet Name="tb_MAUSAC" EntityType="Self.tb_MAUSAC" />
     <EntitySet Name="tb_SANPHAM" EntityType="Self.tb_SANPHAM" />
     <EntitySet Name="tb_TINHTRANGDH" EntityType="Self.tb_TINHTRANGDH" />
     <AssociationSet Name="fk_ctSP_CTHD" Association="Self.fk_ctSP_CTHD">

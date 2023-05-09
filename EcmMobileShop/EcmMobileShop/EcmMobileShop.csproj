@@ -358,6 +358,9 @@
     <Compile Include="Models\tb_LOAISP.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tb_MAUSAC.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tb_SANPHAM.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2483,13 +2486,6 @@
     <Content Include="Content\Slick\fonts\slick.ttf" />
     <Content Include="Content\Slick\fonts\slick.eot" />
     <Content Include="Areas\OneTechAdmin\Views\web.config" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\OneTechAdmin\Views\OrderAdmin\Details.cshtml" />
     <Content Include="Areas\OneTechAdmin\Views\OrderAdmin\Edit.cshtml" />
     <Content Include="Areas\OneTechAdmin\Views\OrderAdmin\Index.cshtml" />
@@ -2628,6 +2624,13 @@
     <Content Include="adminlte\plugins\summernote\summernote.js.map" />
     <Content Include="adminlte\plugins\summernote\summernote.min.js.map" />
     <Content Include="adminlte\plugins\toastr\toastr.js.map" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

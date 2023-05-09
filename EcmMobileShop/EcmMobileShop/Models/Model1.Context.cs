@@ -32,6 +32,7 @@ namespace EcmMobileShop.Models
         public virtual DbSet<tb_HOADON> tb_HOADON { get; set; }
         public virtual DbSet<tb_KHACHHANG> tb_KHACHHANG { get; set; }
         public virtual DbSet<tb_LOAISP> tb_LOAISP { get; set; }
+        public virtual DbSet<tb_MAUSAC> tb_MAUSAC { get; set; }
         public virtual DbSet<tb_SANPHAM> tb_SANPHAM { get; set; }
         public virtual DbSet<tb_TINHTRANGDH> tb_TINHTRANGDH { get; set; }
     }
