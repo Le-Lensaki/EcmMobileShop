@@ -1,0 +1,48 @@
+﻿@model EcmMobileShop.Models.tb_HOADON
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/OneTechAdmin/Views/Shared/_layoutAdmin.cshtml";
+}
+<div>
+    <h4>tb_HOADON</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChiGiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChiGiao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayLap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayLap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_KHACHHANG.TenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_KHACHHANG.TenKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_TINHTRANGDH.TenTinhTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_TINHTRANGDH.TenTinhTrang)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdHD }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

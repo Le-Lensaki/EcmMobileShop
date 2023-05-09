@@ -5,7 +5,7 @@ namespace EcmMobileShop
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
+        // For more information on bundling, visit https:/go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -17,16 +17,41 @@ namespace EcmMobileShop
                         "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
+            // ready for production, use the build tool at https:/modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            //          "~/Scripts/bootstrap.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                        "~/Scripts/bootstrap.bundle.min.js"));
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/adminlte/plugins/fontawesome-free/css/all.min.css",
+                     "~/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
+                     "~/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
+                      "~/adminlte/css/adminlte.min.css",
                       "~/Content/Site.css"));
+
+            bundles.Add(new ScriptBundle("~/adminlte/js").Include(
+                 "~/adminlte/js/adminlte.min.js",
+                 "~/adminlte/plugins/datatables/jquery.dataTables.min.js" ,
+                "~/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" ,
+                "~/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js" ,
+                "~/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" ,
+                "~/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js" ,
+                "~/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js" ,
+                "~/adminlte/plugins/jszip/jszip.min.js" ,
+                "~/adminlte/plugins/pdfmake/pdfmake.min.js" ,
+                "~/adminlte/plugins/pdfmake/vfs_fonts.js" ,
+                "~/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js" ,
+                "~/adminlte/plugins/datatables-buttons/js/buttons.print.min.js" ,
+                "~/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js" ,
+                "~/adminlte/js/demo.js"
+             ));
         }
     }
 }
