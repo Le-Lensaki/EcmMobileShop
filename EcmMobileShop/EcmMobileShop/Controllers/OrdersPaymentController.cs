@@ -27,8 +27,11 @@ namespace EcmMobileShop.Controllers
                 {
                     Orders(model.TenKH, model.SDT, model.DiaChi);
                     return RedirectToAction("Cart", "Home");
-                
-                }    
+                }
+                else
+                {
+                    model = new tb_KHACHHANG();
+                }
             }
             catch (Exception ex)
             {
@@ -92,11 +95,16 @@ namespace EcmMobileShop.Controllers
         {
             try
             {
+
+
                 if (ModelState.IsValid)
                 {
                     tb_KHACHHANG kh = ecmMobile.tb_KHACHHANG.SingleOrDefault(k => k.TenKH == model.TenKH && k.SDT == model.SDT);
                     return RedirectToAction("HistoryOrders", "OrdersPayment",new { idkh = kh.IdKH});
 
+                }else
+                {
+                    model = new tb_KHACHHANG();
                 }
             }
             catch (Exception ex)

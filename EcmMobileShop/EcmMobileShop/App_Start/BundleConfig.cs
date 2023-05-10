@@ -36,6 +36,8 @@ namespace EcmMobileShop
                      "~/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
                      "~/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
                        "~/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+                       "~/adminlte/plugins/sweetalert2/sweetalert2.css",
+                        "~/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css",
                       "~/adminlte/css/adminlte.min.css",
                       "~/Content/Site.css"));
 
@@ -57,6 +59,7 @@ namespace EcmMobileShop
                 "~/adminlte/plugins/datatables-buttons/js/buttons.print.min.js" ,
                 "~/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js" ,
                 "~/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+                "~/adminlte/plugins/sweetalert2/sweetalert2.all.js",
                 "~/adminlte/js/demo.js"
              ));
         }

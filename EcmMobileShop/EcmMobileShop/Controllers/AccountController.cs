@@ -25,8 +25,9 @@ namespace EcmMobileShop.Controllers
         IFirebaseConfig config = new FireSharp.Config.FirebaseConfig
         {
             AuthSecret = "PtNahcVALDcleR71F1jFTbj4j8AM4RED2PamGprQ",
+           
             BasePath = "https://ecmmobileshop-default-rtdb.firebaseio.com/"
-            
+           
         };
         IFirebaseClient client;
 
@@ -91,7 +92,7 @@ namespace EcmMobileShop.Controllers
             // If we got this far, something failed, redisplay form
             return this.View(model);
         }
-        private void SignInUser(string email, string token, bool isPersistent)
+        private async Task SignInUser(string email, string token, bool isPersistent)
         {
             // Initialization.
             var claims = new List<Claim>();
@@ -101,11 +102,32 @@ namespace EcmMobileShop.Controllers
                 // Setting
                 claims.Add(new Claim(ClaimTypes.Email, email));
                 claims.Add(new Claim(ClaimTypes.Authentication, token));
-                var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-                var ctx = Request.GetOwinContext();
-                var authenticationManager = ctx.Authentication;
-                // Sign In.
-                authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, claimIdenties);
+
+                // Khởi tạo client
+                IFirebaseClient client = new FireSharp.FirebaseClient(config);
+
+                var response = client.Get("Khachhang/");
+                Dictionary<string, SignUpModel> data = response.ResultAs<Dictionary<string, SignUpModel>>();
+                SignUpModel customer = data.Values.FirstOrDefault(x => x.Email == email);
+
+                if (customer != null)
+                {
+                    // Add the user's role(s) to the claims.
+                    claims.Add(new Claim(ClaimTypes.Role, customer.Roles)); // assuming customer.Roles is a string containing the user's role(s)
+
+                    var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                    var ctx = Request.GetOwinContext();
+                    var authenticationManager = ctx.Authentication;
+                    // Sign In.
+                    authenticationManager.SignIn(new AuthenticationProperties()
+                    {
+                        IsPersistent = isPersistent
+                    }, claimIdenties);
+                }
+                else
+                {
+                    // Handle case where user not found in database.
+                }
             }
             catch (Exception ex)
             {
@@ -113,6 +135,7 @@ namespace EcmMobileShop.Controllers
                 throw ex;
             }
         }
+
         private void ClaimIdentities(string username, bool isPersistent)
         {
             // Initialization.
@@ -164,7 +187,7 @@ namespace EcmMobileShop.Controllers
             authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Login", "Account");
         }
-        private void AddStudentToFirebase(SignUpModel model)
+        private void AddKhachHangToFirebase(SignUpModel model)
         {
             client = new FireSharp.FirebaseClient(config);
             var data = model;
@@ -190,7 +213,7 @@ namespace EcmMobileShop.Controllers
                 var auth = new FirebaseAuthProvider(new Firebase.Auth.FirebaseConfig(ApiKey));
 
                 var a = await auth.CreateUserWithEmailAndPasswordAsync(model.Email, model.Password, model.Name, true);
-                AddStudentToFirebase(model);
+                AddKhachHangToFirebase(model);
                 ModelState.AddModelError(string.Empty, "Please Verify your email then login Plz.");
             }
             catch (Exception ex)

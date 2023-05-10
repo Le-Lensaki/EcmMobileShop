@@ -60,30 +60,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        <i class="far fa-bell"></i>                                             
+                        <span id="DHnew" class="badge badge-warning navbar-badge">
+                            @{
+                                Html.RenderAction("GetNewOrders", "OrderAdmin");
+                            }
+                        </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">15 Notifications</span>
+                        <span class="dropdown-header">
+                            @{
+                                Html.RenderAction("GetNewOrders", "OrderAdmin");
+                                                } Thông báo mới
+                                            </span>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <a href="@Url.Action("Index", "OrderAdmin", new { area = "OneTechAdmin" })" class="dropdown-item">
+                            <i class="fas fa-shopping-cart mr-2"></i> @{
+                                Html.RenderAction("GetNewOrders", "OrderAdmin");
+                            } Đơn hàng mới
                             <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
+                        </a>                     
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                        @*<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>*@
                     </div>
                 </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -199,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     @ViewContext.RouteData.Values["action"].ToString() != "Index")
                                 {
                                     <li class="breadcrumb-item">
-                                        @Html.ActionLink("Home Page", "Index", "HomeAdmin", new { area = "OneTechAdmin" })
+                                        @Html.ActionLink("Trang chính", "Index", "HomeAdmin", new { area = "OneTechAdmin" })
                                     </li>
                                 }
                                 <li class="breadcrumb-item active">@ViewBag.Title</li>
@@ -244,6 +246,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @Scripts.Render("~/adminlte/js")
     @RenderSection("scripts", required: false)
     <script src="~/adminlte/Scripts/IndexOrder.js"></script>
+    <script src="~/adminlte/Scripts/NewOrder.js"></script>
     <!---Add menu-->
     <script>
         $(document).ready(function () {

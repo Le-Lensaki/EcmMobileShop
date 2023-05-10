@@ -14,11 +14,9 @@ namespace EcmMobileShop.Models
         [Display(Name = "Name")]
         public string Name { get; set; } = string.Empty;
 
-        
         [Display(Name = "SDT")]
         public string SDT { get; set; } = string.Empty;
 
-       
         [Display(Name = "Diachi")]
         public string Diachi { get; set; } = string.Empty;
 
@@ -31,5 +29,12 @@ namespace EcmMobileShop.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; } = string.Empty;
+
+        [Display(Name = "Roles")]
+        public string Roles { get; set; } = "KH";
+
+        [Display(Name = "Status")]
+        public bool Status { get; set; } = true;
     }
+
 }

@@ -8,10 +8,13 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
 {
     public class HomeAdminController : Controller
     {
+        //[Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/Home
         public ActionResult Index()
         {
             return View();
         }
+
+
     }
 }

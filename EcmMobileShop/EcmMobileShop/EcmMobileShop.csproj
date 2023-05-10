@@ -2285,6 +2285,7 @@
     <Content Include="adminlte\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="adminlte\plugins\uplot\uPlot.min.css" />
     <Content Include="adminlte\Scripts\IndexOrder.js" />
+    <Content Include="adminlte\Scripts\NewOrder.js" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\animate.css" />
