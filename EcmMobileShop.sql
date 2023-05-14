@@ -174,6 +174,13 @@ values
 ('Bo'),
 ('Asus')
 GO
+insert into tb_TinhTrangDH(TenTinhTrang) values (N'Đã đặt hàng')
+insert into tb_TinhTrangDH(TenTinhTrang) values (N'Đã xác nhận')
+insert into tb_TinhTrangDH(TenTinhTrang) values (N'Đã thanh toán')
+insert into tb_TinhTrangDH(TenTinhTrang) values (N'Đang được giao')
+insert into tb_TinhTrangDH(TenTinhTrang) values (N'Hoàn thành')
+insert into tb_TinhTrangDH(TenTinhTrang) values (N'Đã Huỷ')
+go
 insert into tb_SANPHAM (TenSP,IdHangSP, IdLoaiSP, Gia, ImagePathMain, MoTaSP)
 values 
 ('Philips BT6900A',1,2, 225, 'https://f8-zpcloud.zdn.vn/1498056500057927627/46b2e8397b81a6dfff90.jpg',N'Loa philips BT6900A dùng để phát nhạc'),
