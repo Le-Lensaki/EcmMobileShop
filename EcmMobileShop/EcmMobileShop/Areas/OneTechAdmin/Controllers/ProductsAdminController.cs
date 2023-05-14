@@ -13,14 +13,14 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
     public class ProductsAdminController : Controller
     {
         private EcmMobileShopEntities db = new EcmMobileShopEntities();
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/ProductsAdmin
         public ActionResult Index()
         {
             var tb_SANPHAM = db.tb_SANPHAM.Include(t => t.tb_HANGSP).Include(t => t.tb_LOAISP);
             return View(tb_SANPHAM.ToList());
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/ProductsAdmin/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,7 +35,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             }
             return View(tb_SANPHAM);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/ProductsAdmin/Create
         public ActionResult Create()
         {
@@ -43,12 +43,11 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdLoaiSP = new SelectList(db.tb_LOAISP, "IdLoaiSP", "TenLoaiSP");
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/ProductsAdmin/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdSP,IdHangSP,IdLoaiSP,TenSP,MoTaSP,Gia,ImagePathMain,NgayNhap,TrangThai")] tb_SANPHAM tb_SANPHAM)
         {
             if (ModelState.IsValid)
@@ -63,6 +62,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_SANPHAM);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/ProductsAdmin/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -80,11 +80,12 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_SANPHAM);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/ProductsAdmin/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "IdSP,IdHangSP,IdLoaiSP,TenSP,MoTaSP,Gia,ImagePathMain,NgayNhap,TrangThai")] tb_SANPHAM tb_SANPHAM)
         {
             if (ModelState.IsValid)
@@ -98,6 +99,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_SANPHAM);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/ProductsAdmin/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -113,9 +115,10 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_SANPHAM);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/ProductsAdmin/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             tb_SANPHAM tb_SANPHAM = db.tb_SANPHAM.Find(id);

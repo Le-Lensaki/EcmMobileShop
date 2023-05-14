@@ -14,12 +14,14 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
     {
         private EcmMobileShopEntities db = new EcmMobileShopEntities();
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/TypeProduct
         public ActionResult Index()
         {
             return View(db.tb_LOAISP.ToList());
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/TypeProduct/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,17 +37,19 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_LOAISP);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/TypeProduct/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/TypeProduct/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Create([Bind(Include = "IdLoaiSP,TenLoaiSP,TrangThai")] tb_LOAISP tb_LOAISP)
         {
             if (ModelState.IsValid)
@@ -58,6 +62,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_LOAISP);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/TypeProduct/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -73,11 +78,12 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_LOAISP);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/TypeProduct/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "IdLoaiSP,TenLoaiSP,TrangThai")] tb_LOAISP tb_LOAISP)
         {
             if (ModelState.IsValid)
@@ -89,6 +95,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_LOAISP);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/TypeProduct/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,9 +111,10 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_LOAISP);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/TypeProduct/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             tb_LOAISP tb_LOAISP = db.tb_LOAISP.Find(id);

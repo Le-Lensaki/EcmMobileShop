@@ -13,14 +13,14 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
     public class DiscountSPController : Controller
     {
         private EcmMobileShopEntities db = new EcmMobileShopEntities();
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountSP
         public ActionResult Index()
         {
             var tb_DISCOUNTSP = db.tb_DISCOUNTSP.Include(t => t.tb_SANPHAM);
             return View(tb_DISCOUNTSP.ToList());
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountSP/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,19 +35,19 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             }
             return View(tb_DISCOUNTSP);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountSP/Create
         public ActionResult Create()
         {
             ViewBag.IdSP = new SelectList(db.tb_SANPHAM, "IdSP", "TenSP");
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/DiscountSP/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Create([Bind(Include = "IdDCSP,IdSP,GiaTri,NgayHH,TinhTrang")] tb_DISCOUNTSP tb_DISCOUNTSP)
         {
             if (ModelState.IsValid)
@@ -60,7 +60,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdSP = new SelectList(db.tb_SANPHAM, "IdSP", "TenSP", tb_DISCOUNTSP.IdSP);
             return View(tb_DISCOUNTSP);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountSP/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,12 +76,12 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdSP = new SelectList(db.tb_SANPHAM, "IdSP", "TenSP", tb_DISCOUNTSP.IdSP);
             return View(tb_DISCOUNTSP);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/DiscountSP/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "IdDCSP,IdSP,GiaTri,NgayHH,TinhTrang")] tb_DISCOUNTSP tb_DISCOUNTSP)
         {
             if (ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdSP = new SelectList(db.tb_SANPHAM, "IdSP", "TenSP", tb_DISCOUNTSP.IdSP);
             return View(tb_DISCOUNTSP);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountSP/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -108,10 +108,10 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             }
             return View(tb_DISCOUNTSP);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/DiscountSP/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             tb_DISCOUNTSP tb_DISCOUNTSP = db.tb_DISCOUNTSP.Find(id);

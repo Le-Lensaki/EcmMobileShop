@@ -159,5 +159,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tb_YKIEN">
+      <EntityTypeMapping TypeName="EcmMobileShopModel.tb_YKIEN">
+        <MappingFragment StoreEntitySet="tb_YKIEN">
+          <ScalarProperty Name="IdYK" ColumnName="IdYK" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="NgayYKien" ColumnName="NgayYKien" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

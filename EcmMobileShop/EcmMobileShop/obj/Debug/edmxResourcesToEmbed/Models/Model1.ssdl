@@ -6,7 +6,7 @@
     </Key>
     <Property Name="IdBanner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NgayHH" Type="datetime" />
-    <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="ImagePathDetail" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TinhTrang" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_BannerSP">
@@ -17,7 +17,7 @@
     <Property Name="IdSP" Type="int" Nullable="false" />
     <Property Name="NgayHH" Type="datetime" />
     <Property Name="TinhTrang" Type="bit" Nullable="false" />
-    <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="ImagePathDetail" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_CHITIETHOADON">
     <Key>
@@ -38,7 +38,7 @@
     <Property Name="IdSP" Type="int" />
     <Property Name="SoLuongSP" Type="int" />
     <Property Name="IdMau" Type="int" Nullable="false" />
-    <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" />
+    <Property Name="ImagePathDetail" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="tb_DISCOUNTKH">
     <Key>
@@ -75,7 +75,7 @@
     <Property Name="IdFB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdctHD" Type="int" Nullable="false" />
     <Property Name="Noidung" Type="nvarchar" MaxLength="500" Nullable="false" />
-    <Property Name="Img" Type="nvarchar" MaxLength="1" />
+    <Property Name="Img" Type="nvarchar(max)" />
     <Property Name="NgayFB" Type="datetime" />
   </EntityType>
   <EntityType Name="tb_HANGSP">
@@ -142,6 +142,16 @@
     </Key>
     <Property Name="IdTinhTrangDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tb_YKIEN">
+    <Key>
+      <PropertyRef Name="IdYK" />
+    </Key>
+    <Property Name="IdYK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SDT" Type="nchar" MaxLength="11" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="NgayYKien" Type="datetime" />
+    <Property Name="NoiDung" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <Association Name="fk_CTHD_FB">
     <End Role="tb_CHITIETHOADON" Type="Self.tb_CHITIETHOADON" Multiplicity="1" />
@@ -303,6 +313,7 @@
     <EntitySet Name="tb_MAUSAC" EntityType="Self.tb_MAUSAC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_SANPHAM" EntityType="Self.tb_SANPHAM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_TINHTRANGDH" EntityType="Self.tb_TINHTRANGDH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_YKIEN" EntityType="Self.tb_YKIEN" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_CTHD_FB" Association="Self.fk_CTHD_FB">
       <End Role="tb_CHITIETHOADON" EntitySet="tb_CHITIETHOADON" />
       <End Role="tb_FEEDBACK" EntitySet="tb_FEEDBACK" />

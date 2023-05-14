@@ -38,6 +38,11 @@ namespace EcmMobileShop
                        "~/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
                        "~/adminlte/plugins/sweetalert2/sweetalert2.css",
                         "~/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css",
+                        "~/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
+                        "~/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
+                        
+                        "~/adminlte/plugins/daterangepicker/daterangepicker.css",
+                        
                       "~/adminlte/css/adminlte.min.css",
                       "~/Content/Site.css"));
 
@@ -60,6 +65,10 @@ namespace EcmMobileShop
                 "~/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js" ,
                 "~/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
                 "~/adminlte/plugins/sweetalert2/sweetalert2.all.js",
+                "~/adminlte/plugins/chart.js/Chart.min.js",
+                "~/adminlte/plugins/daterangepicker/daterangepicker.js",
+                "~/adminlte/plugins/moment/moment.min.js",
+                "~/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js",
                 "~/adminlte/js/demo.js"
              ));
         }

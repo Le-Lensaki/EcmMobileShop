@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -14,6 +15,23 @@ namespace EcmMobileShop.Controllers
         // GET: OrdersPayment
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated) // Kiểm tra xem User đã đăng nhập hay chưa
+            {
+                var user = User.Identity as ClaimsIdentity;
+                var addressClaim = user.FindFirst(ClaimTypes.StreetAddress);
+                string address = addressClaim != null ? addressClaim.Value : "";
+
+                // Lấy thông tin số điện thoại của user
+                var phoneClaim = user.FindFirst(ClaimTypes.MobilePhone);
+                string phone = phoneClaim != null ? phoneClaim.Value : "";
+
+                // Lấy thông tin số điện thoại của user
+                var nameClaim = user.FindFirst(ClaimTypes.Name);
+                string name = nameClaim != null ? nameClaim.Value : "";
+                // Thực hiện đặt hàng với thông tin từ User.Identity
+                Orders(name, phone, address);
+                return RedirectToAction("Cart", "Home");
+            }
             return View();
         }
 
@@ -22,8 +40,8 @@ namespace EcmMobileShop.Controllers
         public async Task<ActionResult> Index(tb_KHACHHANG model)
         {
             try
-            {
-                if(ModelState.IsValid)
+            {               
+                if (ModelState.IsValid)
                 {
                     Orders(model.TenKH, model.SDT, model.DiaChi);
                     return RedirectToAction("Cart", "Home");
@@ -45,13 +63,13 @@ namespace EcmMobileShop.Controllers
         public void Orders(string hoten,string sdt,string diachi)
         {
             List<CartItem> shoppingCart = Session["ShoppingCart"] as List<CartItem>;
-            tb_KHACHHANG kh = ecmMobile.tb_KHACHHANG.SingleOrDefault(k => k.TenKH == hoten && k.SDT == sdt);
+            tb_KHACHHANG kh = ecmMobile.tb_KHACHHANG.SingleOrDefault(k => k.TenKH == hoten && k.SDT == sdt && k.TrangThai == true);
             if(kh == null)
             {
                 kh = new tb_KHACHHANG();
-                ecmMobile.tb_KHACHHANG.Add(new tb_KHACHHANG { TenKH = hoten,SDT = sdt, DiaChi = diachi });
+                ecmMobile.tb_KHACHHANG.Add(new tb_KHACHHANG { TenKH = hoten,SDT = sdt, DiaChi = diachi, TrangThai = true });
                 ecmMobile.SaveChanges();
-                kh = ecmMobile.tb_KHACHHANG.SingleOrDefault(k => k.TenKH == hoten && k.SDT == sdt);
+                kh = ecmMobile.tb_KHACHHANG.SingleOrDefault(k => k.TenKH == hoten && k.SDT == sdt && k.TrangThai == true);
             }
             tb_HOADON hd = new tb_HOADON();
             hd.tb_KHACHHANG = kh;
@@ -99,7 +117,7 @@ namespace EcmMobileShop.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    tb_KHACHHANG kh = ecmMobile.tb_KHACHHANG.SingleOrDefault(k => k.TenKH == model.TenKH && k.SDT == model.SDT);
+                    tb_KHACHHANG kh = ecmMobile.tb_KHACHHANG.SingleOrDefault(k => k.TenKH == model.TenKH && k.SDT == model.SDT && k.TrangThai == true);
                     return RedirectToAction("HistoryOrders", "OrdersPayment",new { idkh = kh.IdKH});
 
                 }else

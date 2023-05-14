@@ -62,12 +62,14 @@ namespace EcmMobileShop.Controllers
 
             try
             {
+
                 // Verification.
                 if (ModelState.IsValid)
                 {
                     var auth = new FirebaseAuthProvider(new Firebase.Auth.FirebaseConfig(ApiKey));
                     var ab = await auth.SignInWithEmailAndPasswordAsync(model.Email, model.Password);
                     string token = ab.FirebaseToken;
+                    
                     var user = ab.User;
                     if (token != "")
                     {
@@ -109,13 +111,16 @@ namespace EcmMobileShop.Controllers
                 var response = client.Get("Khachhang/");
                 Dictionary<string, SignUpModel> data = response.ResultAs<Dictionary<string, SignUpModel>>();
                 SignUpModel customer = data.Values.FirstOrDefault(x => x.Email == email);
-                
 
+                
 
                 if (customer != null)
                 {
                     // Add the user's role(s) to the claims.
                     claims.Add(new Claim(ClaimTypes.Role, customer.Roles)); // assuming customer.Roles is a string containing the user's role(s)
+                    claims.Add(new Claim(ClaimTypes.Name, customer.Name));
+                    claims.Add(new Claim(ClaimTypes.StreetAddress, customer.Diachi));
+                    claims.Add(new Claim(ClaimTypes.MobilePhone, customer.SDT));
 
                     var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
                     var ctx = Request.GetOwinContext();
@@ -230,6 +235,8 @@ namespace EcmMobileShop.Controllers
         public ActionResult ForgotPassword()
         {
             ForgotPasswordViewModel model = new ForgotPasswordViewModel();
+           
+
             return View(model);
         }
 

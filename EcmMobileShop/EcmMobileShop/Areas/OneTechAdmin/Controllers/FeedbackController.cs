@@ -13,14 +13,14 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
     public class FeedbackController : Controller
     {
         private EcmMobileShopEntities db = new EcmMobileShopEntities();
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/Feedback
         public ActionResult Index()
         {
             var tb_FEEDBACK = db.tb_FEEDBACK.Include(t => t.tb_CHITIETHOADON);
             return View(tb_FEEDBACK.ToList());
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/Feedback/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,19 +35,19 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             }
             return View(tb_FEEDBACK);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/Feedback/Create
         public ActionResult Create()
         {
             ViewBag.IdctHD = new SelectList(db.tb_CHITIETHOADON, "IdctHD", "TenSP");
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/Feedback/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Create([Bind(Include = "IdFB,IdctHD,Noidung,Img,NgayFB")] tb_FEEDBACK tb_FEEDBACK)
         {
             if (ModelState.IsValid)
@@ -60,7 +60,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdctHD = new SelectList(db.tb_CHITIETHOADON, "IdctHD", "TenSP", tb_FEEDBACK.IdctHD);
             return View(tb_FEEDBACK);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/Feedback/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,12 +76,12 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdctHD = new SelectList(db.tb_CHITIETHOADON, "IdctHD", "TenSP", tb_FEEDBACK.IdctHD);
             return View(tb_FEEDBACK);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/Feedback/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "IdFB,IdctHD,Noidung,Img,NgayFB")] tb_FEEDBACK tb_FEEDBACK)
         {
             if (ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdctHD = new SelectList(db.tb_CHITIETHOADON, "IdctHD", "TenSP", tb_FEEDBACK.IdctHD);
             return View(tb_FEEDBACK);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/Feedback/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -108,10 +108,10 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             }
             return View(tb_FEEDBACK);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/Feedback/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             tb_FEEDBACK tb_FEEDBACK = db.tb_FEEDBACK.Find(id);

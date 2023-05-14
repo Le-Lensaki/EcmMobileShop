@@ -43,7 +43,7 @@ IdctSP int identity(1,1) primary key,
 IdSP int,
 SoLuongSP int,
 IdMau int not null,
-ImagePathDetail nvarchar,
+ImagePathDetail nvarchar(max),
 constraint fk_tb_CT_SANPHAM_tb_MAUSAC foreign key(IdMau) references tb_MAUSAC(IdMau),
 constraint fk_tb_CT_SANPHAM_tb_SANPHAM foreign key(IdSP) references tb_SANPHAM(IdSP),
 )
@@ -86,7 +86,7 @@ CREATE TABLE tb_FEEDBACK (
 IdFB int identity(1,1) primary key,
 IdctHD int not null,
 Noidung nvarchar(500) not null,
-Img nvarchar,
+Img nvarchar(max),
 NgayFB datetime,
 constraint fk_CTHD_FB foreign key(IdctHD) references tb_CHITIETHOADON(IdctHD),
 )
@@ -112,7 +112,7 @@ go
 CREATE TABLE tb_Banner (
 IdBanner int identity(1,1) primary key,
 NgayHH datetime,
-ImagePathDetail nvarchar not null,
+ImagePathDetail nvarchar(max) not null,
 TinhTrang bit NOT NULL DEFAULT 1,
 )
 go
@@ -121,7 +121,7 @@ IdBannerSP int identity(1,1) primary key,
 IdSP int not null,
 NgayHH datetime,
 TinhTrang bit NOT NULL DEFAULT 1,
-ImagePathDetail nvarchar not null,
+ImagePathDetail nvarchar(max) not null,
 constraint fk_SP_BannerSP foreign key(IdSP) references tb_SANPHAM(IdSP),
 )
 go
@@ -129,6 +129,14 @@ CREATE TABLE tb_DISCOUNTTIME (
 IdDCTime int identity(1,1) primary key,
 NgayHH datetime,
 TinhTrang bit NOT NULL DEFAULT 1,
+)
+go
+CREATE TABLE tb_YKIEN (
+IdYK int identity(1,1) primary key,
+SDT nchar(11),
+email nvarchar(100),
+NgayYKien datetime,
+NoiDung nvarchar(500),
 )
 go
 insert into tb_LOAISP(TenLoaiSP)
@@ -534,3 +542,12 @@ values
 (119, 100, 5),
 (120, 100, 9),
 (121, 100, 2)
+go
+Update tb_SANPHAM set NgayNhap = CURRENT_TIMESTAMP where NgayNhap is null
+
+insert into tb_Banner(NgayHH,ImagePathDetail)
+values ('2023-06-30 11:09:26.040','https://firebasestorage.googleapis.com/v0/b/ecmmobileshop.appspot.com/o/Banner%2Fbanner_product.png?alt=media&token=08b8cfe5-a3ea-49d5-81d3-66577acbdab9')
+
+insert into tb_BannerSP(IdSP,NgayHH,ImagePathDetail)
+values (25,'2023-06-30 11:09:26.040','https://firebasestorage.googleapis.com/v0/b/ecmmobileshop.appspot.com/o/BannerSP%2Fbanner_2_product.png?alt=media&token=e44d22ad-36e6-4a9c-92e9-39fdbad820ee')
+

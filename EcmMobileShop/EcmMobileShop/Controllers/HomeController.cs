@@ -18,14 +18,30 @@ namespace EcmMobileShop.Controllers
         public ActionResult _Header()
         {
 
-            return PartialView("_Header", ecmMobile.tb_LOAISP.ToList());
+            return PartialView("_Header", ecmMobile.tb_LOAISP.Where(loai => loai.TrangThai == true).ToList());
+        }
+
+        public ActionResult getLinkBannerMain()
+        {
+            String linkanh = "https://lh3.google.com/u/1/d/1lBP_DTjnrCq2aV0HfEhKd0272qXnjGwP=w1920-h961-iv1";
+
+            var banner = ecmMobile.tb_Banner
+                .Where(bn => bn.NgayHH >= DateTime.Now && bn.TinhTrang == true && bn.ImagePathDetail != null)
+                .OrderByDescending(bn => bn.NgayHH)
+                .FirstOrDefault();
+            if(banner != null)
+            {
+                linkanh = banner.ImagePathDetail;
+            }    
+
+            return Content(linkanh);
         }
 
         [ChildActionOnly]
         public ActionResult _Footer()
         {
-            var loaiSP = ecmMobile.tb_LOAISP.ToList();
-            var hangSP = ecmMobile.tb_HANGSP.ToList();
+            var loaiSP = ecmMobile.tb_LOAISP.Where(loai => loai.TrangThai == true).ToList();
+            var hangSP = ecmMobile.tb_HANGSP.Where(hang => hang.TrangThai == true).ToList();
             var modelCollection = new ModelCollection();
             modelCollection.AddModel(loaiSP);
             modelCollection.AddModel(hangSP);
@@ -35,18 +51,26 @@ namespace EcmMobileShop.Controllers
 
         public ActionResult Index()
         {
-            var loaiSP = ecmMobile.tb_LOAISP.ToList();
-            return View(loaiSP);
+            var loaiSP = ecmMobile.tb_LOAISP.Where(loai => loai.TrangThai == true).ToList();
+            var bannerslideSP = ecmMobile.tb_BannerSP.Where(bn => bn.NgayHH >= DateTime.Now && bn.TinhTrang == true).ToList();
+            var listSPMoi = ecmMobile.tb_SANPHAM.Where(sp => sp.TrangThai == true)
+                                 .OrderByDescending(sp => sp.NgayNhap).ToList();
+
+            var modelCollection = new ModelCollection();
+            modelCollection.AddModel(loaiSP);
+            modelCollection.AddModel(bannerslideSP);
+            modelCollection.AddModel(listSPMoi);
+            return View(modelCollection);
         }
 
-        public ActionResult Shop(int? page, int? idLoai, int? idHang)
+        public ActionResult Shop(int? page, int? idLoai, int? idHang, string noidungtimkiem)
         {
            
             if (page == null) page = 1;
 
             if (idLoai != null)
             {
-                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP).Where(p => p.IdLoaiSP == idLoai);
+                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP).Where(p => p.IdLoaiSP == idLoai && p.TrangThai == true && p.tb_HANGSP.TrangThai == true && p.tb_LOAISP.TrangThai == true);
 
                 int pageSize = 15;
                 int pageNumber = (page ?? 1);
@@ -55,7 +79,18 @@ namespace EcmMobileShop.Controllers
                 return View(mobile.ToPagedList(pageNumber, pageSize));
             } if(idHang != null)
             {
-                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP).Where(p => p.IdHangSP == idHang);
+                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP).Where(p => p.IdHangSP == idHang && p.TrangThai == true && p.tb_HANGSP.TrangThai == true && p.tb_LOAISP.TrangThai == true);
+
+                int pageSize = 15;
+                int pageNumber = (page ?? 1);
+
+
+                return View(mobile.ToPagedList(pageNumber, pageSize));
+            } if(noidungtimkiem != null)
+            {
+                var mobile = ecmMobile.tb_SANPHAM
+                            .OrderBy(b => b.IdSP)
+                            .Where(p => p.TenSP.ToLower().Contains(noidungtimkiem.ToLower()) && p.TrangThai == true && p.tb_HANGSP.TrangThai == true && p.tb_LOAISP.TrangThai == true);
 
                 int pageSize = 15;
                 int pageNumber = (page ?? 1);
@@ -64,7 +99,7 @@ namespace EcmMobileShop.Controllers
                 return View(mobile.ToPagedList(pageNumber, pageSize));
             }    
             else {
-                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP);
+                var mobile = ecmMobile.tb_SANPHAM.OrderBy(b => b.IdSP).Where(p => p.TrangThai == true && p.tb_HANGSP.TrangThai == true && p.tb_LOAISP.TrangThai == true);
                 int a = mobile.Count();
 
                 int pageSize = 15;
@@ -78,7 +113,7 @@ namespace EcmMobileShop.Controllers
         }
         public ActionResult Product(int id)
         {
-            var product = ecmMobile.tb_SANPHAM.Single(p => p.IdSP == id);
+            var product = ecmMobile.tb_SANPHAM.Single(p => p.IdSP == id && p.TrangThai == true);
             List<tb_SANPHAM> tb_SANPHAMs = new List<tb_SANPHAM>();
             tb_SANPHAMs.Add(product);
             var listLoai = ecmMobile.tb_LOAISP.ToList();
@@ -120,6 +155,21 @@ namespace EcmMobileShop.Controllers
 
             return Content(ShoppingCart.Count.ToString());
         }
+        public ActionResult GetMoneyItem()
+        {
+            List<CartItem> ShoppingCart = Session["ShoppingCart"] as List<CartItem>;
+            if (ShoppingCart == null)
+            {
+                ShoppingCart = new List<CartItem>();
+            }
+            int sum = 0;
+            foreach (var item in ShoppingCart)
+            {
+                sum += (item.Gia ?? 0) * item.SoLuong;
+            }
+
+            return Content(sum.ToString());
+        }
         public RedirectToRouteResult RemoveItem(int ProductId)
         {
             List<CartItem> shoppingCart = Session["ShoppingCart"] as List<CartItem>;
@@ -131,7 +181,7 @@ namespace EcmMobileShop.Controllers
             return RedirectToAction("Cart", "Home");
         }
 
-        public RedirectToRouteResult AddToCart(int ProductId,string mausac, int soluong)
+        public ActionResult AddToCart(int ProductId,string mausac, int soluong)
         {
             Cart cart = new Cart(); 
             if (Session["ShoppingCart"] == null) // Nếu giỏ hàng chưa được khởi tạo
@@ -142,25 +192,30 @@ namespace EcmMobileShop.Controllers
             List<CartItem> ShoppingCart = Session["ShoppingCart"] as List<CartItem>;  // Gán qua biến giohang dễ code
 
 
+            int idmau = 0;
 
+            if (mausac != null)
+            {
 
-            
+                // Tách các giá trị màu Red, Green và Blue từ chuỗi
+                var mau = mausac.Replace("rgb(", "").Replace(")", "").Split(',');
 
-            // Tách các giá trị màu Red, Green và Blue từ chuỗi
-            var mau = mausac.Replace("rgb(", "").Replace(")", "").Split(',');
+                // Chuyển đổi giá trị màu thành kiểu số nguyên
+                int red = int.Parse(mau[0].Trim());
+                int green = int.Parse(mau[1].Trim());
+                int blue = int.Parse(mau[2].Trim());
 
-            // Chuyển đổi giá trị màu thành kiểu số nguyên
-            int red = int.Parse(mau[0].Trim());
-            int green = int.Parse(mau[1].Trim());
-            int blue = int.Parse(mau[2].Trim());
+                // Tạo một đối tượng Color từ các giá trị màu
+                Color color = Color.FromArgb(red, green, blue);
 
-            // Tạo một đối tượng Color từ các giá trị màu
-            Color color = Color.FromArgb(red, green, blue);
+                // Chuyển đổi màu sang mã hex
+                string hexColor = "#" + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
 
-            // Chuyển đổi màu sang mã hex
-            string hexColor = "#" + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
-
-            int idmau = ecmMobile.tb_MAUSAC.Where(c => c.MaMau == hexColor).First().IdMau;
+                idmau = ecmMobile.tb_MAUSAC.Where(c => c.MaMau == hexColor).First().IdMau;
+            }else
+            {
+                idmau = ecmMobile.tb_CT_SANPHAM.SingleOrDefault(ctsp => ctsp.IdSP == ProductId && ctsp.SoLuongSP > 0).IdMau;
+            }
 
 
 
@@ -182,8 +237,8 @@ namespace EcmMobileShop.Controllers
             }
 
             // Action này sẽ chuyển hướng về trang chi tiết sp khi khách hàng đặt vào giỏ thành công. Bạn có thể chuyển về chính trang khách hàng vừa đứng bằng lệnh return Redirect(Request.UrlReferrer.ToString()); nếu muốn.
-            return RedirectToAction("Cart", "Home");
-            //return RedirectToRoute(Request.UrlReferrer.ToString());
+            //return RedirectToAction("Cart", "Home");
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         public ActionResult Contact()

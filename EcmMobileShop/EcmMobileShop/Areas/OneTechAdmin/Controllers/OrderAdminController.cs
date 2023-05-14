@@ -60,7 +60,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         //[Authorize(Roles = "Admin")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "IdHD,IdTinhTrangDH,IdKH,DiaChiGiao,NgayLap")] tb_HOADON tb_HOADON)
         {
             if (ModelState.IsValid)

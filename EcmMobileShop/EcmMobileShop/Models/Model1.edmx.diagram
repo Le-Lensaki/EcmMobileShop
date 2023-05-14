@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f7d51b1e22cc47c08b47ebc744c90431" Name="Diagram1">
+      <Diagram DiagramId="bb06a228cd3c4d8e800ad715ab00da66" Name="Diagram1">
         <EntityTypeShape EntityType="EcmMobileShopModel.tb_Banner" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EcmMobileShopModel.tb_BannerSP" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="EcmMobileShopModel.tb_CHITIETHOADON" Width="1.5" PointX="10.5" PointY="4.125" IsExpanded="true" />
@@ -20,6 +20,7 @@
         <EntityTypeShape EntityType="EcmMobileShopModel.tb_MAUSAC" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="EcmMobileShopModel.tb_SANPHAM" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EcmMobileShopModel.tb_TINHTRANGDH" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcmMobileShopModel.tb_YKIEN" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="EcmMobileShopModel.fk_SP_BannerSP" ManuallyRouted="false" />
         <AssociationConnector Association="EcmMobileShopModel.fk_CTHD_FB" ManuallyRouted="false" />
         <AssociationConnector Association="EcmMobileShopModel.fk_ctSP_CTHD" ManuallyRouted="false" />

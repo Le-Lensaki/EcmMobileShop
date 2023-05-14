@@ -40,5 +40,6 @@ namespace EcmMobileShop.Models
         public virtual DbSet<tb_MAUSAC> tb_MAUSAC { get; set; }
         public virtual DbSet<tb_SANPHAM> tb_SANPHAM { get; set; }
         public virtual DbSet<tb_TINHTRANGDH> tb_TINHTRANGDH { get; set; }
+        public virtual DbSet<tb_YKIEN> tb_YKIEN { get; set; }
     }
 }

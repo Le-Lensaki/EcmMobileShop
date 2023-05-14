@@ -14,12 +14,14 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
     {
         private EcmMobileShopEntities db = new EcmMobileShopEntities();
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/tb_Banner
         public ActionResult Index()
         {
             return View(db.tb_Banner.ToList());
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/tb_Banner/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,17 +37,19 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_Banner);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/tb_Banner/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/tb_Banner/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Create([Bind(Include = "IdBanner,NgayHH,ImagePathDetail,TinhTrang")] tb_Banner tb_Banner)
         {
             if (ModelState.IsValid)
@@ -58,6 +62,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_Banner);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/tb_Banner/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -73,11 +78,12 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_Banner);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/tb_Banner/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "IdBanner,NgayHH,ImagePathDetail,TinhTrang")] tb_Banner tb_Banner)
         {
             if (ModelState.IsValid)
@@ -89,6 +95,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_Banner);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/tb_Banner/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,9 +111,10 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             return View(tb_Banner);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/tb_Banner/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             tb_Banner tb_Banner = db.tb_Banner.Find(id);

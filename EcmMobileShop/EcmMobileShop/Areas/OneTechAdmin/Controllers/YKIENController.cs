@@ -10,120 +10,115 @@ using EcmMobileShop.Models;
 
 namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
 {
-    public class tb_BannerSPController : Controller
+    public class YKIENController : Controller
     {
         private EcmMobileShopEntities db = new EcmMobileShopEntities();
 
         [Authorize(Roles = "Admin")]
-        // GET: OneTechAdmin/tb_BannerSP
+        // GET: OneTechAdmin/YKIEN
         public ActionResult Index()
         {
-            var tb_BannerSP = db.tb_BannerSP.Include(t => t.tb_SANPHAM);
-            return View(tb_BannerSP.ToList());
+            return View(db.tb_YKIEN.ToList());
         }
 
         [Authorize(Roles = "Admin")]
-        // GET: OneTechAdmin/tb_BannerSP/Details/5
+        // GET: OneTechAdmin/YKIEN/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tb_BannerSP tb_BannerSP = db.tb_BannerSP.Find(id);
-            if (tb_BannerSP == null)
+            tb_YKIEN tb_YKIEN = db.tb_YKIEN.Find(id);
+            if (tb_YKIEN == null)
             {
                 return HttpNotFound();
             }
-            return View(tb_BannerSP);
+            return View(tb_YKIEN);
         }
 
         [Authorize(Roles = "Admin")]
-        // GET: OneTechAdmin/tb_BannerSP/Create
+        // GET: OneTechAdmin/YKIEN/Create
         public ActionResult Create()
         {
-            ViewBag.IdSP = new SelectList(db.tb_SANPHAM, "IdSP", "TenSP");
             return View();
         }
 
         [Authorize(Roles = "Admin")]
-        // POST: OneTechAdmin/tb_BannerSP/Create
+        // POST: OneTechAdmin/YKIEN/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
 
-        public ActionResult Create([Bind(Include = "IdBannerSP,IdSP,NgayHH,TinhTrang,ImagePathDetail")] tb_BannerSP tb_BannerSP)
+        public ActionResult Create([Bind(Include = "IdYK,SDT,email,NgayYKien,NoiDung")] tb_YKIEN tb_YKIEN)
         {
             if (ModelState.IsValid)
             {
-                db.tb_BannerSP.Add(tb_BannerSP);
+                db.tb_YKIEN.Add(tb_YKIEN);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdSP = new SelectList(db.tb_SANPHAM, "IdSP", "TenSP", tb_BannerSP.IdSP);
-            return View(tb_BannerSP);
+            return View(tb_YKIEN);
         }
 
         [Authorize(Roles = "Admin")]
-        // GET: OneTechAdmin/tb_BannerSP/Edit/5
+        // GET: OneTechAdmin/YKIEN/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tb_BannerSP tb_BannerSP = db.tb_BannerSP.Find(id);
-            if (tb_BannerSP == null)
+            tb_YKIEN tb_YKIEN = db.tb_YKIEN.Find(id);
+            if (tb_YKIEN == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdSP = new SelectList(db.tb_SANPHAM, "IdSP", "TenSP", tb_BannerSP.IdSP);
-            return View(tb_BannerSP);
+            return View(tb_YKIEN);
         }
 
         [Authorize(Roles = "Admin")]
-        // POST: OneTechAdmin/tb_BannerSP/Edit/5
+        // POST: OneTechAdmin/YKIEN/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
 
-        public ActionResult Edit([Bind(Include = "IdBannerSP,IdSP,NgayHH,TinhTrang,ImagePathDetail")] tb_BannerSP tb_BannerSP)
+        public ActionResult Edit([Bind(Include = "IdYK,SDT,email,NgayYKien,NoiDung")] tb_YKIEN tb_YKIEN)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tb_BannerSP).State = EntityState.Modified;
+                db.Entry(tb_YKIEN).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdSP = new SelectList(db.tb_SANPHAM, "IdSP", "TenSP", tb_BannerSP.IdSP);
-            return View(tb_BannerSP);
+            return View(tb_YKIEN);
         }
 
         [Authorize(Roles = "Admin")]
-        // GET: OneTechAdmin/tb_BannerSP/Delete/5
+        // GET: OneTechAdmin/YKIEN/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tb_BannerSP tb_BannerSP = db.tb_BannerSP.Find(id);
-            if (tb_BannerSP == null)
+            tb_YKIEN tb_YKIEN = db.tb_YKIEN.Find(id);
+            if (tb_YKIEN == null)
             {
                 return HttpNotFound();
             }
-            return View(tb_BannerSP);
+            return View(tb_YKIEN);
         }
 
         [Authorize(Roles = "Admin")]
-        // POST: OneTechAdmin/tb_BannerSP/Delete/5
+        // POST: OneTechAdmin/YKIEN/Delete/5
         [HttpPost, ActionName("Delete")]
 
         public ActionResult DeleteConfirmed(int id)
         {
-            tb_BannerSP tb_BannerSP = db.tb_BannerSP.Find(id);
-            db.tb_BannerSP.Remove(tb_BannerSP);
+            tb_YKIEN tb_YKIEN = db.tb_YKIEN.Find(id);
+            db.tb_YKIEN.Remove(tb_YKIEN);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

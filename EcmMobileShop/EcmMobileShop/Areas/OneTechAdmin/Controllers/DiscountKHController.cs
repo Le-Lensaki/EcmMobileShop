@@ -13,14 +13,14 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
     public class DiscountKHController : Controller
     {
         private EcmMobileShopEntities db = new EcmMobileShopEntities();
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountKH
         public ActionResult Index()
         {
             var tb_DISCOUNTKH = db.tb_DISCOUNTKH.Include(t => t.tb_KHACHHANG);
             return View(tb_DISCOUNTKH.ToList());
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountKH/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,19 +35,19 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             }
             return View(tb_DISCOUNTKH);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountKH/Create
         public ActionResult Create()
         {
             ViewBag.IdKH = new SelectList(db.tb_KHACHHANG, "IdKH", "TenKH");
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/DiscountKH/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Create([Bind(Include = "IdDCKH,IdKH,GiaTri,NgayHH,TinhTrang")] tb_DISCOUNTKH tb_DISCOUNTKH)
         {
             if (ModelState.IsValid)
@@ -60,7 +60,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdKH = new SelectList(db.tb_KHACHHANG, "IdKH", "TenKH", tb_DISCOUNTKH.IdKH);
             return View(tb_DISCOUNTKH);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountKH/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,12 +76,12 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdKH = new SelectList(db.tb_KHACHHANG, "IdKH", "TenKH", tb_DISCOUNTKH.IdKH);
             return View(tb_DISCOUNTKH);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/DiscountKH/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "IdDCKH,IdKH,GiaTri,NgayHH,TinhTrang")] tb_DISCOUNTKH tb_DISCOUNTKH)
         {
             if (ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdKH = new SelectList(db.tb_KHACHHANG, "IdKH", "TenKH", tb_DISCOUNTKH.IdKH);
             return View(tb_DISCOUNTKH);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/DiscountKH/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -108,10 +108,10 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             }
             return View(tb_DISCOUNTKH);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: OneTechAdmin/DiscountKH/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             tb_DISCOUNTKH tb_DISCOUNTKH = db.tb_DISCOUNTKH.Find(id);

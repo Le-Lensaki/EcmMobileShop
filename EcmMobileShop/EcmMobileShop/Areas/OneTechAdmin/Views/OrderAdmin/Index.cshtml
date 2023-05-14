@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>Địa chỉ giao hàng</th>
+                    <th>Số điện thoại</th>
                     <th>Ngày lập</th>
                     <th>Tên khách hàng</th>
                     <th>Tình trạng đơn hàng</th>
@@ -26,29 +27,33 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DiaChiGiao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NgayLap)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tb_KHACHHANG.TenKH)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tb_TINHTRANGDH.TenTinhTrang)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Cập nhật", "Edit", new { id = item.IdHD }) |
-                            @Html.ActionLink("Chi tiết hóa đơn", "Details", new { id = item.IdHD })
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChiGiao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_KHACHHANG.SDT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayLap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_KHACHHANG.TenKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_TINHTRANGDH.TenTinhTrang)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Cập nhật", "Edit", new { id = item.IdHD }) |
+                        @Html.ActionLink("Chi tiết hóa đơn", "Details", new { id = item.IdHD })
+                    </td>
+                </tr>
                 }
             </tbody>
             <tfoot>
                 <tr>
                     <th>Địa chỉ giao hàng</th>
+                    <th>Số điện thoại</th>
                     <th>Ngày lập</th>
                     <th>Tên khách hàng</th>
                     <th>Tình trạng đơn hàng</th>

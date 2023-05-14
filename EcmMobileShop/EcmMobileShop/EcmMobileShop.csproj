@@ -316,7 +316,9 @@
     <Compile Include="Areas\OneTechAdmin\Controllers\ProductsAdminController.cs" />
     <Compile Include="Areas\OneTechAdmin\Controllers\tb_BannerController.cs" />
     <Compile Include="Areas\OneTechAdmin\Controllers\tb_BannerSPController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\tKHACHHANGController.cs" />
     <Compile Include="Areas\OneTechAdmin\Controllers\TypeProductController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\YKIENController.cs" />
     <Compile Include="Areas\OneTechAdmin\OneTechAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -388,6 +390,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_TINHTRANGDH.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_YKIEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2308,7 +2313,6 @@
     <Content Include="adminlte\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="adminlte\plugins\uplot\uPlot.min.css" />
     <Content Include="adminlte\Scripts\IndexOrder.js" />
-    <Content Include="adminlte\Scripts\NewOrder.js" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\animate.css" />
@@ -2678,13 +2682,6 @@
     <Content Include="Areas\OneTechAdmin\Views\Feedback\Details.cshtml" />
     <Content Include="Areas\OneTechAdmin\Views\Feedback\Edit.cshtml" />
     <Content Include="Areas\OneTechAdmin\Views\Feedback\Index.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\OneTechAdmin\Views\tb_BannerSP\Create.cshtml" />
     <Content Include="Areas\OneTechAdmin\Views\tb_BannerSP\Delete.cshtml" />
     <Content Include="Areas\OneTechAdmin\Views\tb_BannerSP\Details.cshtml" />
@@ -2695,6 +2692,23 @@
     <Content Include="Areas\OneTechAdmin\Views\tb_Banner\Details.cshtml" />
     <Content Include="Areas\OneTechAdmin\Views\tb_Banner\Edit.cshtml" />
     <Content Include="Areas\OneTechAdmin\Views\tb_Banner\Index.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\OneTechAdmin\Views\YKIEN\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\YKIEN\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\YKIEN\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\YKIEN\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\YKIEN\Index.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tKHACHHANG\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tKHACHHANG\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tKHACHHANG\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tKHACHHANG\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tKHACHHANG\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -506,7 +506,7 @@
     .product_image img {
         display: block;
         position: relative;
-        max-width: 100%;
+        max-width: 77%;
     }
 
 .product_content {
@@ -972,6 +972,10 @@
     color: #828282;
     line-height: 1.5;
     margin-top: 9px;
+    overflow: hidden;
+   
+    text-overflow: ellipsis;
+    height: 170px;
 }
 
 .banner_2_rating {

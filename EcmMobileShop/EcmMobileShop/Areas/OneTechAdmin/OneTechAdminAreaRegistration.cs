@@ -20,5 +20,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
+
+
     }
 }

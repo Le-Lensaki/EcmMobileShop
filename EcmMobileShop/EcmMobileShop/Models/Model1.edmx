@@ -11,7 +11,7 @@
           </Key>
           <Property Name="IdBanner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NgayHH" Type="datetime" />
-          <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="ImagePathDetail" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TinhTrang" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_BannerSP">
@@ -22,7 +22,7 @@
           <Property Name="IdSP" Type="int" Nullable="false" />
           <Property Name="NgayHH" Type="datetime" />
           <Property Name="TinhTrang" Type="bit" Nullable="false" />
-          <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="ImagePathDetail" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_CHITIETHOADON">
           <Key>
@@ -43,7 +43,7 @@
           <Property Name="IdSP" Type="int" />
           <Property Name="SoLuongSP" Type="int" />
           <Property Name="IdMau" Type="int" Nullable="false" />
-          <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" />
+          <Property Name="ImagePathDetail" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tb_DISCOUNTKH">
           <Key>
@@ -80,7 +80,7 @@
           <Property Name="IdFB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdctHD" Type="int" Nullable="false" />
           <Property Name="Noidung" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Img" Type="nvarchar" MaxLength="1" />
+          <Property Name="Img" Type="nvarchar(max)" />
           <Property Name="NgayFB" Type="datetime" />
         </EntityType>
         <EntityType Name="tb_HANGSP">
@@ -147,6 +147,16 @@
           </Key>
           <Property Name="IdTinhTrangDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tb_YKIEN">
+          <Key>
+            <PropertyRef Name="IdYK" />
+          </Key>
+          <Property Name="IdYK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SDT" Type="nchar" MaxLength="11" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgayYKien" Type="datetime" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <Association Name="fk_CTHD_FB">
           <End Role="tb_CHITIETHOADON" Type="Self.tb_CHITIETHOADON" Multiplicity="1" />
@@ -308,6 +318,7 @@
           <EntitySet Name="tb_MAUSAC" EntityType="Self.tb_MAUSAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_SANPHAM" EntityType="Self.tb_SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_TINHTRANGDH" EntityType="Self.tb_TINHTRANGDH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_YKIEN" EntityType="Self.tb_YKIEN" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_CTHD_FB" Association="Self.fk_CTHD_FB">
             <End Role="tb_CHITIETHOADON" EntitySet="tb_CHITIETHOADON" />
             <End Role="tb_FEEDBACK" EntitySet="tb_FEEDBACK" />
@@ -368,7 +379,7 @@
           </Key>
           <Property Name="IdBanner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NgayHH" Type="DateTime" Precision="3" />
-          <Property Name="ImagePathDetail" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImagePathDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TinhTrang" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_BannerSP">
@@ -379,7 +390,7 @@
           <Property Name="IdSP" Type="Int32" Nullable="false" />
           <Property Name="NgayHH" Type="DateTime" Precision="3" />
           <Property Name="TinhTrang" Type="Boolean" Nullable="false" />
-          <Property Name="ImagePathDetail" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImagePathDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tb_SANPHAM" Relationship="Self.fk_SP_BannerSP" FromRole="tb_BannerSP" ToRole="tb_SANPHAM" />
         </EntityType>
         <EntityType Name="tb_CHITIETHOADON">
@@ -404,7 +415,7 @@
           <Property Name="IdSP" Type="Int32" />
           <Property Name="SoLuongSP" Type="Int32" />
           <Property Name="IdMau" Type="Int32" Nullable="false" />
-          <Property Name="ImagePathDetail" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePathDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tb_CHITIETHOADON" Relationship="Self.fk_ctSP_CTHD" FromRole="tb_CT_SANPHAM" ToRole="tb_CHITIETHOADON" />
           <NavigationProperty Name="tb_MAUSAC" Relationship="Self.fk_tb_CT_SANPHAM_tb_MAUSAC" FromRole="tb_CT_SANPHAM" ToRole="tb_MAUSAC" />
           <NavigationProperty Name="tb_SANPHAM" Relationship="Self.fk_tb_CT_SANPHAM_tb_SANPHAM" FromRole="tb_CT_SANPHAM" ToRole="tb_SANPHAM" />
@@ -446,7 +457,7 @@
           <Property Name="IdFB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdctHD" Type="Int32" Nullable="false" />
           <Property Name="Noidung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Img" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NgayFB" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tb_CHITIETHOADON" Relationship="Self.fk_CTHD_FB" FromRole="tb_FEEDBACK" ToRole="tb_CHITIETHOADON" />
         </EntityType>
@@ -528,6 +539,16 @@
           <Property Name="IdTinhTrangDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenTinhTrang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tb_HOADON" Relationship="Self.fk_TT_HD" FromRole="tb_TINHTRANGDH" ToRole="tb_HOADON" />
+        </EntityType>
+        <EntityType Name="tb_YKIEN">
+          <Key>
+            <PropertyRef Name="IdYK" />
+          </Key>
+          <Property Name="IdYK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgayYKien" Type="DateTime" Precision="3" />
+          <Property Name="NoiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="fk_SP_BannerSP">
           <End Role="tb_SANPHAM" Type="Self.tb_SANPHAM" Multiplicity="1" />
@@ -689,6 +710,7 @@
           <EntitySet Name="tb_MAUSAC" EntityType="Self.tb_MAUSAC" />
           <EntitySet Name="tb_SANPHAM" EntityType="Self.tb_SANPHAM" />
           <EntitySet Name="tb_TINHTRANGDH" EntityType="Self.tb_TINHTRANGDH" />
+          <EntitySet Name="tb_YKIEN" EntityType="Self.tb_YKIEN" />
           <AssociationSet Name="fk_SP_BannerSP" Association="Self.fk_SP_BannerSP">
             <End Role="tb_SANPHAM" EntitySet="tb_SANPHAM" />
             <End Role="tb_BannerSP" EntitySet="tb_BannerSP" />
@@ -899,6 +921,17 @@
               <MappingFragment StoreEntitySet="tb_TINHTRANGDH">
                 <ScalarProperty Name="IdTinhTrangDH" ColumnName="IdTinhTrangDH" />
                 <ScalarProperty Name="TenTinhTrang" ColumnName="TenTinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_YKIEN">
+            <EntityTypeMapping TypeName="EcmMobileShopModel.tb_YKIEN">
+              <MappingFragment StoreEntitySet="tb_YKIEN">
+                <ScalarProperty Name="IdYK" ColumnName="IdYK" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="NgayYKien" ColumnName="NgayYKien" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
