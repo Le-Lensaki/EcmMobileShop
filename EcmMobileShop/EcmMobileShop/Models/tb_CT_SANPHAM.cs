@@ -23,11 +23,12 @@ namespace EcmMobileShop.Models
         public int IdctSP { get; set; }
         public Nullable<int> IdSP { get; set; }
         public Nullable<int> SoLuongSP { get; set; }
-        public string MauSac { get; set; }
+        public int IdMau { get; set; }
         public string ImagePathDetail { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_CHITIETHOADON> tb_CHITIETHOADON { get; set; }
+        public virtual tb_MAUSAC tb_MAUSAC { get; set; }
         public virtual tb_SANPHAM tb_SANPHAM { get; set; }
     }
 }

@@ -109,6 +109,8 @@ namespace EcmMobileShop.Controllers
                 var response = client.Get("Khachhang/");
                 Dictionary<string, SignUpModel> data = response.ResultAs<Dictionary<string, SignUpModel>>();
                 SignUpModel customer = data.Values.FirstOrDefault(x => x.Email == email);
+                
+
 
                 if (customer != null)
                 {
@@ -118,6 +120,7 @@ namespace EcmMobileShop.Controllers
                     var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
                     var ctx = Request.GetOwinContext();
                     var authenticationManager = ctx.Authentication;
+
                     // Sign In.
                     authenticationManager.SignIn(new AuthenticationProperties()
                     {

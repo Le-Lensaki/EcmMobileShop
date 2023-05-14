@@ -14,8 +14,17 @@ namespace EcmMobileShop.Models
     
     public partial class tb_MAUSAC
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tb_MAUSAC()
+        {
+            this.tb_CT_SANPHAM = new HashSet<tb_CT_SANPHAM>();
+        }
+    
         public int IdMau { get; set; }
         public string MaMau { get; set; }
         public string TenMau { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_CT_SANPHAM> tb_CT_SANPHAM { get; set; }
     }
 }

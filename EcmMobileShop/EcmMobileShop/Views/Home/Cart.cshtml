@@ -6,6 +6,8 @@
 @{
     ViewBag.Title = "Cart";
     var cartlist = (Model.GetModel<List<CartItem>>());
+    var listmau = (Model.GetModel<List<tb_MAUSAC>>());
+
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/Styles/cart_responsive.css">
@@ -42,7 +44,7 @@
                                             </div>
                                             <div class="cart_item_color cart_info_col">
                                                 <div class="cart_item_title">Màu sắc</div>
-                                                <div class="cart_item_text"><span style="background-color:#999999;"></span>Silver</div>
+                                                <div class="cart_item_text"><span style="background-color: @listmau.FirstOrDefault(m => m.IdMau == item.IdMau).MaMau;"></span>@listmau.FirstOrDefault(m => m.IdMau == item.IdMau).TenMau</div>
                                             </div>
                                             <div class="cart_item_quantity cart_info_col">
                                                 <div class="cart_item_title">Số lượng</div>

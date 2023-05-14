@@ -10,7 +10,7 @@ namespace EcmMobileShop.Models
     {
         public int IdctSP { get; set; }
         public int SoLuong { get; set; }
-        public string MauSac { get; set; }
+        public int IdMau { get; set; }
         public double Tien {
             get
             {

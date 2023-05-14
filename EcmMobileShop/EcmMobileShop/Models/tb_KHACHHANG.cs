@@ -17,6 +17,7 @@ namespace EcmMobileShop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_KHACHHANG()
         {
+            this.tb_DISCOUNTKH = new HashSet<tb_DISCOUNTKH>();
             this.tb_HOADON = new HashSet<tb_HOADON>();
         }
     
@@ -26,6 +27,8 @@ namespace EcmMobileShop.Models
         public string SDT { get; set; }
         public bool TrangThai { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_DISCOUNTKH> tb_DISCOUNTKH { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_HOADON> tb_HOADON { get; set; }
     }

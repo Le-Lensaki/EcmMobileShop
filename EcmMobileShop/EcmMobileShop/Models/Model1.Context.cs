@@ -25,9 +25,14 @@ namespace EcmMobileShop.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<tb_Banner> tb_Banner { get; set; }
+        public virtual DbSet<tb_BannerSP> tb_BannerSP { get; set; }
         public virtual DbSet<tb_CHITIETHOADON> tb_CHITIETHOADON { get; set; }
         public virtual DbSet<tb_CT_SANPHAM> tb_CT_SANPHAM { get; set; }
+        public virtual DbSet<tb_DISCOUNTKH> tb_DISCOUNTKH { get; set; }
+        public virtual DbSet<tb_DISCOUNTSP> tb_DISCOUNTSP { get; set; }
+        public virtual DbSet<tb_DISCOUNTTIME> tb_DISCOUNTTIME { get; set; }
+        public virtual DbSet<tb_FEEDBACK> tb_FEEDBACK { get; set; }
         public virtual DbSet<tb_HANGSP> tb_HANGSP { get; set; }
         public virtual DbSet<tb_HOADON> tb_HOADON { get; set; }
         public virtual DbSet<tb_KHACHHANG> tb_KHACHHANG { get; set; }

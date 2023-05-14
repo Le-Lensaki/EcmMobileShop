@@ -14,6 +14,12 @@ namespace EcmMobileShop.Models
     
     public partial class tb_CHITIETHOADON
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tb_CHITIETHOADON()
+        {
+            this.tb_FEEDBACK = new HashSet<tb_FEEDBACK>();
+        }
+    
         public int IdctHD { get; set; }
         public Nullable<int> IdHD { get; set; }
         public Nullable<int> IdctSP { get; set; }
@@ -21,6 +27,8 @@ namespace EcmMobileShop.Models
         public Nullable<double> SoLuongBan { get; set; }
         public Nullable<double> GiaBan { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_FEEDBACK> tb_FEEDBACK { get; set; }
         public virtual tb_CT_SANPHAM tb_CT_SANPHAM { get; set; }
         public virtual tb_HOADON tb_HOADON { get; set; }
     }

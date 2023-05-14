@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.0.3\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.0.3\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -47,10 +48,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Auth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Firebase.Auth.1.0.0\lib\netstandard1.1\Firebase.Auth.dll</HintPath>
@@ -306,13 +307,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StartUp.Auth.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\DiscountKHController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\DiscountSPController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\FeedbackController.cs" />
     <Compile Include="Areas\OneTechAdmin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\OneTechAdmin\Controllers\OrderAdminController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\ProductsAdminController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\tb_BannerController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\tb_BannerSPController.cs" />
+    <Compile Include="Areas\OneTechAdmin\Controllers\TypeProductController.cs" />
     <Compile Include="Areas\OneTechAdmin\OneTechAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersPaymentController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,13 +345,28 @@
     </Compile>
     <Compile Include="Models\ModelCollection.cs" />
     <Compile Include="Models\SignUpModel.cs" />
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Models\tb_Banner.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_BannerSP.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_CHITIETHOADON.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_CT_SANPHAM.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_DISCOUNTKH.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_DISCOUNTSP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_DISCOUNTTIME.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_FEEDBACK.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_HANGSP.cs">
@@ -2625,6 +2648,36 @@
     <Content Include="adminlte\plugins\summernote\summernote.js.map" />
     <Content Include="adminlte\plugins\summernote\summernote.min.js.map" />
     <Content Include="adminlte\plugins\toastr\toastr.js.map" />
+    <Content Include="Areas\OneTechAdmin\Views\ProductsAdmin\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\ProductsAdmin\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\ProductsAdmin\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\ProductsAdmin\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\ProductsAdmin\Index.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\TypeProduct\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\TypeProduct\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\TypeProduct\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\TypeProduct\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\TypeProduct\Index.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Brand\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Brand\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountKH\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountKH\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountKH\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountKH\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountKH\Index.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountSP\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountSP\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountSP\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountSP\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\DiscountSP\Index.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Feedback\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Feedback\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Feedback\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Feedback\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\Feedback\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -2632,6 +2685,16 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\OneTechAdmin\Views\tb_BannerSP\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_BannerSP\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_BannerSP\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_BannerSP\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_BannerSP\Index.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_Banner\Create.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_Banner\Delete.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_Banner\Details.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_Banner\Edit.cshtml" />
+    <Content Include="Areas\OneTechAdmin\Views\tb_Banner\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2778,7 +2841,6 @@
     <Folder Include="Areas\OneTechAdmin\Data\" />
     <Folder Include="Content\AdminLTE\" />
     <Folder Include="Scripts\AdminLTE\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2827,6 +2889,8 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.0.3\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.0.3\build\Microsoft.TypeScript.MSBuild.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.0.3\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.0.3\build\Microsoft.TypeScript.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.0.3\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.0.3\build\Microsoft.TypeScript.MSBuild.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
@@ -2834,6 +2898,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

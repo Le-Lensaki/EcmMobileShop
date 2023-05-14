@@ -28,7 +28,7 @@ namespace EcmMobileShop.Models
                         cartItem.IdSP = item.IdSP;
                         cartItem.IdctSP = ctsp.IdctSP;
                         cartItem.TenSP = item.TenSP;
-                        cartItem.MauSac = ctsp.MauSac;
+                        cartItem.IdMau = ctsp.IdMau;
                         cartItem.IdHangSP = item.IdHangSP;
                         cartItem.IdLoaiSP = item.IdLoaiSP;
                         cartItem.MoTaSP = item.MoTaSP;
@@ -47,12 +47,12 @@ namespace EcmMobileShop.Models
         {
             return this.products;
         }
-        public CartItem FindProduct(int id)
+        public CartItem FindProduct(int id,int? idMau)
         {
             int a = this.products.Count;
 
 
-            return this.products.Single(p => p.IdSP.Equals(id));
+            return this.products.Single(p => p.IdSP == id && p.IdMau == idMau) ;
         }
 
     }

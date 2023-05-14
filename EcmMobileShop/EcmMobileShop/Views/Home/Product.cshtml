@@ -13,14 +13,17 @@
     var listLoai = (Model.GetModel<List<tb_LOAISP>>());
     var listHang = (Model.GetModel<List<tb_HANGSP>>());
     var listctsp = (Model.GetModel<List<tb_CT_SANPHAM>>());
-    var mausac = "";
+    var listmau = (Model.GetModel<List<tb_MAUSAC>>());
+    var mausac = 0;
     foreach (var item in listctsp)
     {
         if(item.IdSP == product.IdSP)
         {
-            mausac = item.MauSac;
+            mausac = item.IdMau;
+            
         }
     }
+    
 }
 
 
@@ -86,14 +89,17 @@
                                 <ul class="product_color">
                                     <li>
                                         <span>Color: </span>
-                                        <div class="color_mark_container"><div id="selected_color" class="color_mark"></div></div>
+                                        <div class="color_mark_container"><div id="selected_color" class="color_mark" style="background-color: @listctsp[0].tb_MAUSAC.MaMau"></div></div>
                                         <div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
 
                                         <ul class="color_list">
-                                            <li><div class="color_mark" style="background: #999999;"></div></li>
-                                            <li><div class="color_mark" style="background: #b19c83;"></div></li>
-                                            <li><div class="color_mark" style="background: #000000;"></div></li>
-                                        </ul>
+                                            
+                                                @foreach (var mausacitem in listctsp)
+                                                {
+                                                    <li><div class="color_mark" style="background: @mausacitem.tb_MAUSAC.MaMau;"></div></li>
+                                                }
+
+                                            </ul>
                                     </li>
                                 </ul>
 
@@ -101,7 +107,7 @@
 
                             <div class="product_price">$@product.Gia</div>
                             <div class="button_container">
-                                <button type="button" class="button cart_button"  onclick="location.href='@Url.Action("AddToCart", "Home", new { ProductId = product.IdSP, mausac = mausac})'">Thêm vào giỏ</button>
+                                <button type="button" class="button cart_button">Thêm vào giỏ</button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                             </div>
 
@@ -230,4 +236,19 @@
         </div>
     </div>
 </div>
+<script>
+    // Lấy các phần tử DOM cần sử dụng
+    var quantityInput = document.getElementById("quantity_input");
+    var selectedColor = document.getElementById("selected_color");
+    var addToCartButton = document.querySelector(".button.cart_button");
 
+    // Lắng nghe sự kiện khi nút "Thêm vào giỏ" được click
+    addToCartButton.addEventListener("click", function () {
+        // Lấy giá trị số lượng và màu sắc
+        var quantity = quantityInput.value;
+        var color = selectedColor.style.backgroundColor;
+
+        // Chuyển hướng đến trang "AddToCart" với các tham số số lượng và màu sắc
+        window.location.href = '@Url.Action("AddToCart", "Home")?ProductId=@product.IdSP&mausac=' + encodeURIComponent(color) + '&soluong=' + quantity;
+    });
+</script>

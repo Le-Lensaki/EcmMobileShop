@@ -1,14 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EcmMobileShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="sysdiagrams">
+  <EntityType Name="tb_Banner">
     <Key>
-      <PropertyRef Name="diagram_id" />
+      <PropertyRef Name="IdBanner" />
     </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
+    <Property Name="IdBanner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayHH" Type="datetime" />
+    <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="TinhTrang" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_BannerSP">
+    <Key>
+      <PropertyRef Name="IdBannerSP" />
+    </Key>
+    <Property Name="IdBannerSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSP" Type="int" Nullable="false" />
+    <Property Name="NgayHH" Type="datetime" />
+    <Property Name="TinhTrang" Type="bit" Nullable="false" />
+    <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_CHITIETHOADON">
     <Key>
@@ -28,8 +37,46 @@
     <Property Name="IdctSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdSP" Type="int" />
     <Property Name="SoLuongSP" Type="int" />
-    <Property Name="MauSac" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdMau" Type="int" Nullable="false" />
     <Property Name="ImagePathDetail" Type="nvarchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="tb_DISCOUNTKH">
+    <Key>
+      <PropertyRef Name="IdDCKH" />
+    </Key>
+    <Property Name="IdDCKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdKH" Type="int" Nullable="false" />
+    <Property Name="GiaTri" Type="float" Nullable="false" />
+    <Property Name="NgayHH" Type="datetime" />
+    <Property Name="TinhTrang" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_DISCOUNTSP">
+    <Key>
+      <PropertyRef Name="IdDCSP" />
+    </Key>
+    <Property Name="IdDCSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSP" Type="int" Nullable="false" />
+    <Property Name="GiaTri" Type="float" Nullable="false" />
+    <Property Name="NgayHH" Type="datetime" />
+    <Property Name="TinhTrang" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_DISCOUNTTIME">
+    <Key>
+      <PropertyRef Name="IdDCTime" />
+    </Key>
+    <Property Name="IdDCTime" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayHH" Type="datetime" />
+    <Property Name="TinhTrang" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_FEEDBACK">
+    <Key>
+      <PropertyRef Name="IdFB" />
+    </Key>
+    <Property Name="IdFB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdctHD" Type="int" Nullable="false" />
+    <Property Name="Noidung" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Img" Type="nvarchar" MaxLength="1" />
+    <Property Name="NgayFB" Type="datetime" />
   </EntityType>
   <EntityType Name="tb_HANGSP">
     <Key>
@@ -96,6 +143,18 @@
     <Property Name="IdTinhTrangDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <Association Name="fk_CTHD_FB">
+    <End Role="tb_CHITIETHOADON" Type="Self.tb_CHITIETHOADON" Multiplicity="1" />
+    <End Role="tb_FEEDBACK" Type="Self.tb_FEEDBACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_CHITIETHOADON">
+        <PropertyRef Name="IdctHD" />
+      </Principal>
+      <Dependent Role="tb_FEEDBACK">
+        <PropertyRef Name="IdctHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_ctSP_CTHD">
     <End Role="tb_CT_SANPHAM" Type="Self.tb_CT_SANPHAM" Multiplicity="0..1" />
     <End Role="tb_CHITIETHOADON" Type="Self.tb_CHITIETHOADON" Multiplicity="*" />
@@ -120,6 +179,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_KH_DC">
+    <End Role="tb_KHACHHANG" Type="Self.tb_KHACHHANG" Multiplicity="1" />
+    <End Role="tb_DISCOUNTKH" Type="Self.tb_DISCOUNTKH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_KHACHHANG">
+        <PropertyRef Name="IdKH" />
+      </Principal>
+      <Dependent Role="tb_DISCOUNTKH">
+        <PropertyRef Name="IdKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_KH_HD">
     <End Role="tb_KHACHHANG" Type="Self.tb_KHACHHANG" Multiplicity="0..1" />
     <End Role="tb_HOADON" Type="Self.tb_HOADON" Multiplicity="*" />
@@ -129,6 +200,42 @@
       </Principal>
       <Dependent Role="tb_HOADON">
         <PropertyRef Name="IdKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SP_BannerSP">
+    <End Role="tb_SANPHAM" Type="Self.tb_SANPHAM" Multiplicity="1" />
+    <End Role="tb_BannerSP" Type="Self.tb_BannerSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_SANPHAM">
+        <PropertyRef Name="IdSP" />
+      </Principal>
+      <Dependent Role="tb_BannerSP">
+        <PropertyRef Name="IdSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SP_DC">
+    <End Role="tb_SANPHAM" Type="Self.tb_SANPHAM" Multiplicity="1" />
+    <End Role="tb_DISCOUNTSP" Type="Self.tb_DISCOUNTSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_SANPHAM">
+        <PropertyRef Name="IdSP" />
+      </Principal>
+      <Dependent Role="tb_DISCOUNTSP">
+        <PropertyRef Name="IdSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_CT_SANPHAM_tb_MAUSAC">
+    <End Role="tb_MAUSAC" Type="Self.tb_MAUSAC" Multiplicity="1" />
+    <End Role="tb_CT_SANPHAM" Type="Self.tb_CT_SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_MAUSAC">
+        <PropertyRef Name="IdMau" />
+      </Principal>
+      <Dependent Role="tb_CT_SANPHAM">
+        <PropertyRef Name="IdMau" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -181,9 +288,14 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="EcmMobileShopModelStoreContainer">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_Banner" EntityType="Self.tb_Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_BannerSP" EntityType="Self.tb_BannerSP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_CHITIETHOADON" EntityType="Self.tb_CHITIETHOADON" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_CT_SANPHAM" EntityType="Self.tb_CT_SANPHAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_DISCOUNTKH" EntityType="Self.tb_DISCOUNTKH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_DISCOUNTSP" EntityType="Self.tb_DISCOUNTSP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_DISCOUNTTIME" EntityType="Self.tb_DISCOUNTTIME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_FEEDBACK" EntityType="Self.tb_FEEDBACK" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_HANGSP" EntityType="Self.tb_HANGSP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_HOADON" EntityType="Self.tb_HOADON" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_KHACHHANG" EntityType="Self.tb_KHACHHANG" Schema="dbo" store:Type="Tables" />
@@ -191,6 +303,10 @@
     <EntitySet Name="tb_MAUSAC" EntityType="Self.tb_MAUSAC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_SANPHAM" EntityType="Self.tb_SANPHAM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_TINHTRANGDH" EntityType="Self.tb_TINHTRANGDH" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_CTHD_FB" Association="Self.fk_CTHD_FB">
+      <End Role="tb_CHITIETHOADON" EntitySet="tb_CHITIETHOADON" />
+      <End Role="tb_FEEDBACK" EntitySet="tb_FEEDBACK" />
+    </AssociationSet>
     <AssociationSet Name="fk_ctSP_CTHD" Association="Self.fk_ctSP_CTHD">
       <End Role="tb_CT_SANPHAM" EntitySet="tb_CT_SANPHAM" />
       <End Role="tb_CHITIETHOADON" EntitySet="tb_CHITIETHOADON" />
@@ -199,9 +315,25 @@
       <End Role="tb_HOADON" EntitySet="tb_HOADON" />
       <End Role="tb_CHITIETHOADON" EntitySet="tb_CHITIETHOADON" />
     </AssociationSet>
+    <AssociationSet Name="fk_KH_DC" Association="Self.fk_KH_DC">
+      <End Role="tb_KHACHHANG" EntitySet="tb_KHACHHANG" />
+      <End Role="tb_DISCOUNTKH" EntitySet="tb_DISCOUNTKH" />
+    </AssociationSet>
     <AssociationSet Name="fk_KH_HD" Association="Self.fk_KH_HD">
       <End Role="tb_KHACHHANG" EntitySet="tb_KHACHHANG" />
       <End Role="tb_HOADON" EntitySet="tb_HOADON" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SP_BannerSP" Association="Self.fk_SP_BannerSP">
+      <End Role="tb_SANPHAM" EntitySet="tb_SANPHAM" />
+      <End Role="tb_BannerSP" EntitySet="tb_BannerSP" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SP_DC" Association="Self.fk_SP_DC">
+      <End Role="tb_SANPHAM" EntitySet="tb_SANPHAM" />
+      <End Role="tb_DISCOUNTSP" EntitySet="tb_DISCOUNTSP" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_CT_SANPHAM_tb_MAUSAC" Association="Self.fk_tb_CT_SANPHAM_tb_MAUSAC">
+      <End Role="tb_MAUSAC" EntitySet="tb_MAUSAC" />
+      <End Role="tb_CT_SANPHAM" EntitySet="tb_CT_SANPHAM" />
     </AssociationSet>
     <AssociationSet Name="fk_tb_CT_SANPHAM_tb_SANPHAM" Association="Self.fk_tb_CT_SANPHAM_tb_SANPHAM">
       <End Role="tb_SANPHAM" EntitySet="tb_SANPHAM" />

@@ -135,7 +135,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="@Url.Action("Index", "HomeAdmin", new { area = "OneTechAdmin" })" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -166,6 +166,89 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="@Url.Action("Index", "OrderAdmin", new { area = "OneTechAdmin" })" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách hoá đơn</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <a href="@Url.Action("Index", "ProductsAdmin", new { area = "OneTechAdmin" })" class="nav-link active">
+                                <i class="nav-icon fas fa-mobile"></i>
+                                <p>
+                                    Sản phẩm
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "ProductsAdmin", new { area = "OneTechAdmin" })" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách sản phẩm</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "TypeProduct", new { area = "OneTechAdmin" })" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Loại sản phẩm</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Brand", new { area = "OneTechAdmin" })" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Hãng sản phẩm</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <a href="@Url.Action("Index", "", new { area = "OneTechAdmin" })" class="nav-link active">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                    Khuyến mãi
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "DiscountSP", new { area = "OneTechAdmin" })" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Khuyến mãi sản phẩm</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "DiscountKH", new { area = "OneTechAdmin" })" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Khuyến mãi khách hàng</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <a href="@Url.Action("Index", "", new { area = "OneTechAdmin" })" class="nav-link active">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                    Quảng cáo
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "tb_Banner", new { area = "OneTechAdmin" })" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Banner chính</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "tb_BannerSP", new { area = "OneTechAdmin" })" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Banner Slide</p>
                                     </a>
                                 </li>
                             </ul>

@@ -13,14 +13,14 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
     public class OrderAdminController : Controller
     {
         private EcmMobileShopEntities db = new EcmMobileShopEntities();
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/OrderAdmin
         public ActionResult Index()
         {
             var tb_HOADON = db.tb_HOADON.Include(t => t.tb_KHACHHANG).Include(t => t.tb_TINHTRANGDH);
             return View(tb_HOADON.ToList());
         }
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/OrderAdmin/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,7 +37,7 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.id = id;
             return View(tb_CHITIETHOADON);
         }
-        //[Authorize]
+        //[Authorize(Roles = "Admin")]
         // GET: OneTechAdmin/OrderAdmin/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -54,10 +54,11 @@ namespace EcmMobileShop.Areas.OneTechAdmin.Controllers
             ViewBag.IdTinhTrangDH = new SelectList(db.tb_TINHTRANGDH, "IdTinhTrangDH", "TenTinhTrang", tb_HOADON.IdTinhTrangDH);
             return View(tb_HOADON);
         }
-        //[Authorize]
+
         // POST: OneTechAdmin/OrderAdmin/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdHD,IdTinhTrangDH,IdKH,DiaChiGiao,NgayLap")] tb_HOADON tb_HOADON)

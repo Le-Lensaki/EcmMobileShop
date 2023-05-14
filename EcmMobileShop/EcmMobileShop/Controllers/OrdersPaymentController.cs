@@ -66,7 +66,7 @@ namespace EcmMobileShop.Controllers
 
             foreach (CartItem item in shoppingCart)
             {
-                tb_CT_SANPHAM ctsp = ecmMobile.tb_CT_SANPHAM.Single(ct => ct.MauSac == item.MauSac && ct.IdctSP == item.IdctSP);
+                tb_CT_SANPHAM ctsp = ecmMobile.tb_CT_SANPHAM.Single(ct => ct.IdMau == item.IdMau && ct.IdctSP == item.IdctSP);
                 
 
                     tb_CHITIETHOADON cthd = new tb_CHITIETHOADON();
@@ -84,7 +84,7 @@ namespace EcmMobileShop.Controllers
             Session["ShoppingCart"] = null;
            
         }
-
+        
         public ActionResult FormHistory()
         {
             return View();

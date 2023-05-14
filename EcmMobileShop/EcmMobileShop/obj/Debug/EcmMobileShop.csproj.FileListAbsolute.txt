@@ -543,7 +543,8 @@ D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\bin\Newtonsoft.Json.xml
 D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\bin\Antlr3.Runtime.pdb
 D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\obj\Debug\EcmMobileShop.csproj.App.config
-D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\obj\Debug\EcmMobileShop.csproj.AssemblyReference.cache
 D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\obj\Debug\EcmMobileShop.csproj.CoreCompileInputs.cache
 D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\obj\Debug\EcmMobileShop.dll
 D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\obj\Debug\EcmMobileShop.pdb
+D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\obj\Debug\EcmMobileShop.csproj.CopyComplete
+D:\EcmMobileShop\EcmMobileShop\EcmMobileShop\obj\Debug\EcmMobileShop.csproj.AssemblyReference.cache

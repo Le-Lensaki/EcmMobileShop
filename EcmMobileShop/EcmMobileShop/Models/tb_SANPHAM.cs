@@ -17,7 +17,9 @@ namespace EcmMobileShop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_SANPHAM()
         {
+            this.tb_BannerSP = new HashSet<tb_BannerSP>();
             this.tb_CT_SANPHAM = new HashSet<tb_CT_SANPHAM>();
+            this.tb_DISCOUNTSP = new HashSet<tb_DISCOUNTSP>();
         }
     
         public int IdSP { get; set; }
@@ -31,7 +33,11 @@ namespace EcmMobileShop.Models
         public bool TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_BannerSP> tb_BannerSP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_CT_SANPHAM> tb_CT_SANPHAM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_DISCOUNTSP> tb_DISCOUNTSP { get; set; }
         public virtual tb_HANGSP tb_HANGSP { get; set; }
         public virtual tb_LOAISP tb_LOAISP { get; set; }
     }
