@@ -44,8 +44,10 @@
                         @Html.DisplayFor(modelItem => item.tb_TINHTRANGDH.TenTinhTrang)
                     </td>
                     <td>
-                        @Html.ActionLink("Cập nhật", "Edit", new { id = item.IdHD }) |
-                        @Html.ActionLink("Chi tiết hóa đơn", "Details", new { id = item.IdHD })
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.IdHD }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Details", "Details", new { id = item.IdHD }, new { @class = "btn btn-primary" })
+                       
                     </td>
                 </tr>
                 }
